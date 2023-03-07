@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "fullName": "Sebastian Vettel",
+      "phoneNumber": "012345678905",
+      "email": "sebastian.vettel@email.com"
+    },
+    {
+      "id": 2,
+      "fullName": "Nico Huelkenberg",
+      "phoneNumber": "012345678927",
+      "email": "nico.huelkenberg@email.com"
+    },
+    {
+      "id": 3,
+      "fullName": "Nico Rosberg",
+      "phoneNumber": "012345678906",
+      "email": "nico.rosberg@email.com"
+    },
+    {
+      "id": 4,
+      "fullName": "Mick Schumacher",
+      "phoneNumber": "012345678947",
+      "email": "mick.schumacher@email.com"
+    }
+  ]

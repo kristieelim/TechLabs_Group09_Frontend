@@ -13,10 +13,10 @@ class App extends Component{
         <Router>
           <Routes>
             <Route exact path="/" element={<h1>Home Page</h1>} />
-            <Route exact path="StorePage" element={<h1>Page for Stores</h1>} />
-            <Route exact path="DriverPage" element={<h1>Page for Drivers</h1>} />
-            <Route exact path="AdminPage_Stores" element={<h1>Page for Admins - List of Stores</h1>} />
-            <Route exact path="AdminPage_Drivers" element={<h1>Page for Admins - List of Drivers</h1>} />
+            <Route exact path="StorePage" element={<StorePage />} />
+            <Route exact path="DriverPage" element={<DriverPage />} />
+            <Route exact path="AdminPage_Stores" element={<AdminPage_Stores />} />
+            <Route exact path="AdminPage_Drivers" element={<AdminPage_Drivers />} />
           </Routes>
           <div className="list">
             <ul>
