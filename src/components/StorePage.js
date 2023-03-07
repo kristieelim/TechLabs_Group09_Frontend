@@ -3,7 +3,7 @@ import React from 'react'
 export default function StorePage() {
     return (
         <div>
-            <h1>StorePage</h1>
+            <h1>Store Page</h1>
         </div>
     )
 }
