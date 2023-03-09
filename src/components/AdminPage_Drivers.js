@@ -140,27 +140,27 @@ export default function AdminPage_Drivers() {
         </table>
       </form>
 
-      <h2>Add a Contact</h2>
+      <h2>Add a Driver</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
           name="fullName"
           required="required"
-          placeholder="Enter a name..."
+          placeholder="Enter a name"
           onChange={handleAddFormChange}
         />
         <input
           type="text"
           name="phoneNumber"
           required="required"
-          placeholder="Enter a phone number..."
+          placeholder="Enter a phone number"
           onChange={handleAddFormChange}
         />
         <input
           type="email"
           name="email"
           required="required"
-          placeholder="Enter an email..."
+          placeholder="Enter an email address"
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
