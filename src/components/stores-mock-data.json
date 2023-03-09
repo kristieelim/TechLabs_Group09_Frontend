@@ -1,0 +1,44 @@
+[
+    {
+      "id": 1,
+      "fullName": "Kaufland Aachen, Vaalser Str.",
+      "address": "Vaalser Str. 242-246, 52074 Aachen",
+      "phoneNumber": "0241960700",
+      "email": "kaufland.aachen@email.com"
+    },
+    {
+      "id": 2,
+      "fullName": "Nobis Printen e.K.",
+      "address": "Kapellenstraße 16, 52066 Aachen",
+      "phoneNumber": "0241968000",
+      "email": "nobis-burtscheid@email.com"
+    },
+    {
+      "id": 3,
+      "fullName": "ALDI SÜD",
+      "address": "Franzstraße 2, 52064 Aachen",
+      "phoneNumber": "08008002534",
+      "email": "aldi.sued-aachen@email.com"
+    },
+    {
+      "id": 4,
+      "fullName": "Lemongrass",
+      "address": "Jakobstraße 126, 52064 Aachen",
+      "phoneNumber": "024192040888",
+      "email": "lemongrass-food@email.com"
+    },
+    {
+        "id": 5,
+        "fullName": "Backwerk",
+        "address": "Pontstraße 133, 52062 Aachen",
+        "phoneNumber": "024140029832",
+        "email": "backwerk-aachen.ponttor@email.com"
+    },
+    {
+        "id": 6,
+        "fullName": "Hilal Supermarkt",
+        "address": "Adalbertsteinweg 38-40, 52070 Aachen",
+        "phoneNumber": "0241 47582224",
+        "email": "hilal.supermarkt@email.com"
+    }
+  ]
