@@ -5,14 +5,20 @@ import StorePage from "./components/StorePage";
 import DriverPage from "./components/DriverPage"; 
 import AdminPage_Stores from "./components/AdminPage_Stores";
 import AdminPage_Drivers from "./components/AdminPage_Drivers";
+import HomePage from "./components/HomePage";
+
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+
 
 class App extends Component{
   render(){
     return(
-      <div className="App">
+      <div className="App"> 
+      <Navbar />  
         <Router>
           <Routes>
-            <Route exact path="/" element={<h1>Home Page</h1>} />
+            <Route exact path="HomePage" element={<HomePage />} />
             <Route exact path="StorePage" element={<StorePage />} />
             <Route exact path="DriverPage" element={<DriverPage />} />
             <Route exact path="AdminPage_Stores" element={<AdminPage_Stores />} />
@@ -20,7 +26,7 @@ class App extends Component{
           </Routes>
           <div className="list">
             <ul>
-              <li><Link to="/">Home</Link></li>
+              <li><Link to="HomePage">Home</Link></li>
               <li><Link to="StorePage">Page for Stores</Link></li>
               <li><Link to="DriverPage">Page for Drivers</Link></li>
               <li><Link to="AdminPage_Stores">Page for Admins - List of Stores</Link></li>
