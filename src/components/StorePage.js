@@ -128,13 +128,7 @@ export default function StorePage() {
           placeholder="Enter Food quantity"
           onChange={handleAddFormChange}
         />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        />
+
         <button type="submit">Add</button>
       </form>
 

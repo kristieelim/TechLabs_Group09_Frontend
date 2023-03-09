@@ -7,7 +7,7 @@ export default function Navbar() {
         <nav>
             <img src={example} className="nav--icon" />
             <h3 className="nav--logo_text">Tafel Route</h3>
-            <h4 className="nav--view">Restaurants View</h4>
+            <h4 className="nav--view"> View</h4>
         </nav>
     )
 }
