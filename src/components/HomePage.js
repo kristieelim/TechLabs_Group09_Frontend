@@ -21,7 +21,7 @@ export default function DriverPage() {
             
              Together, we can make a meaningful impact on reducing food waste and combating hunger in our community.
             </div>
-            <Main />
+            {/* <Main /> */}
             </div>             
         </div>
     )
