@@ -18,7 +18,7 @@ class App extends Component{
       <Navbar />  
         <Router>
           <Routes>
-            <Route exact path="HomePage" element={<HomePage />} />
+            <Route exact path="/" element={<HomePage />} />
             <Route exact path="StorePage" element={<StorePage />} />
             <Route exact path="DriverPage" element={<DriverPage />} />
             <Route exact path="AdminPage_Stores" element={<AdminPage_Stores />} />
@@ -26,7 +26,7 @@ class App extends Component{
           </Routes>
           <div className="list">
             <ul>
-              <li><Link to="HomePage">Home</Link></li>
+              <li><Link to="/">Home</Link></li>
               <li><Link to="StorePage">Page for Stores</Link></li>
               <li><Link to="DriverPage">Page for Drivers</Link></li>
               <li><Link to="AdminPage_Stores">Page for Admins - List of Stores</Link></li>
