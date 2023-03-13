@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
-const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick}) => {
+const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
     
-    const [foodQuantity, setFoodQuantity] = useState(contact.foodQuantity);
+    const [foodQuantity, setFoodQuantity] = useState(food.foodQuantity);
 
     const handleIncrementClick = () => {
         setFoodQuantity(prevQuantity => Number(prevQuantity) + 1);
@@ -14,8 +14,9 @@ const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick}) => {
       };
     return (
     <tr>
-      <td>{contact.food}</td>
+      <td>{food.food}</td>
       <td>{foodQuantity}</td> 
+      <td>{food.unit}</td> 
       <td>
 
         <button
@@ -32,11 +33,11 @@ const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick}) => {
         </button>
         <button
           type="button"
-          onClick={(event) => handleEditClick(event, contact)}
+          onClick={(event) => handleEditClick(event, food)}
         >
           Edit
         </button>
-        <button type="button" onClick={() => handleDeleteClick(contact.id)}>
+        <button type="button" onClick={() => handleDeleteClick(food.id)}>
           Delete
         </button>
       </td>

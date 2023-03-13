@@ -6,21 +6,23 @@ import EditableRow from './FoodEditable';
 
 
 export default function StorePage() {
-  const [contacts, setContacts] = useState(data);
+  const [foods, setfoods] = useState(data);
   const [addFormData, setAddFormData] = useState({
     food: "",
     foodQuantity: Number,
+    unit: "",
 
   });
 
   const [editFormData, setEditFormData] = useState({
     food: "",
     foodQuantity: Number,
+    unit: "",
   });
 
 
 
-  const [editContactId, setEditContactId] = useState(null);
+  const [editfoodId, setEditfoodId] = useState(null);
 
   const handleAddFormChange = (event) => {
     event.preventDefault();
@@ -49,60 +51,62 @@ export default function StorePage() {
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
 
-    const newContact = {
+    const newfood = {
       id: nanoid(),
       food: addFormData.food,
       foodQuantity: addFormData.foodQuantity,
+      unit: addFormData.unit,
     };
 
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+    const newfoods = [...foods, newfood];
+    setfoods(newfoods);
   };
 
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
-    const editedContact = {
-      id: editContactId,
+    const editedfood = {
+      id: editfoodId,
       food: editFormData.food,
       foodQuantity: editFormData.foodQuantity,
+      unit: editFormData.unit,
     };
 
-    const newContacts = [...contacts];
+    const newfoods = [...foods];
 
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
+    const index = foods.findIndex((food) => food.id === editfoodId);
 
-    newContacts[index] = editedContact;
+    newfoods[index] = editedfood;
 
-    setContacts(newContacts);
-    setEditContactId(null);
+    setfoods(newfoods);
+    setEditfoodId(null);
   };
 
-  const handleEditClick = (event, contact) => {
+  const handleEditClick = (event, food) => {
     event.preventDefault();
-    setEditContactId(contact.id);
+    setEditfoodId(food.id);
 
     const formValues = {
-      food: contact.food,
-      foodQuantity: contact.foodQuantity,
-    
+      food: food.food,
+      foodQuantity: food.foodQuantity,
+      unit: food.unit
     };
 
     setEditFormData(formValues);
   };
 
   const handleCancelClick = () => {
-    setEditContactId(null);
+    setEditfoodId(null);
   };
 
-  const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
+  const handleDeleteClick = (foodId) => {
+    const newfoods = [...foods];
 
-    const index = contacts.findIndex((contact) => contact.id === contactId);
+    const index = foods.findIndex((food) => food.id === foodId);
 
-    newContacts.splice(index, 1);
+    newfoods.splice(index, 1);
 
-    setContacts(newContacts);
+    setfoods(newfoods);
   };  
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                
@@ -127,6 +131,13 @@ export default function StorePage() {
           placeholder="Enter Food Quantity"
           onChange={handleAddFormChange}
         />
+        <input
+          type="text"
+          name="unit"
+          required="required"
+          placeholder="Enter Unit"
+          onChange={handleAddFormChange}
+        />
 
         <button type="submit">Add</button>
       </form>
@@ -138,13 +149,14 @@ export default function StorePage() {
             <tr>
               <th>Type</th>
               <th>Amount</th>
+              <th>Unit</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {contacts.map((contact) => (
+            {foods.map((food) => (
               <Fragment>
-                {editContactId === contact.id ? (
+                {editfoodId === food.id ? (
                   <EditableRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
@@ -152,7 +164,7 @@ export default function StorePage() {
                   />
                 ) : (
                   <ReadOnlyRow
-                    contact={contact}
+                    food={food}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
                   />
