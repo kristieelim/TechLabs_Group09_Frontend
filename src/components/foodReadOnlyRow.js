@@ -1,24 +1,41 @@
 import React from "react";
+import { useState } from "react";
 
-const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick }) => {
-  return (
+const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick}) => {
+    
+    const [foodQuantity, setFoodQuantity] = useState(contact.foodQuantity);
+
+    const handleIncrementClick = () => {
+        setFoodQuantity(prevQuantity => Number(prevQuantity) + 1);
+      };
+    
+      const handleDecrementClick = () => {
+        setFoodQuantity((prevQuantity) => Number(prevQuantity) - 1);
+      };
+    return (
     <tr>
       <td>{contact.food}</td>
-      <td>{contact.foodQuantity}</td> 
+      <td>{foodQuantity}</td> 
       <td>
+
         <button
           type="button"
-          onClick={"increment()"}
+          onClick={handleIncrementClick }
         >
           +
         </button>
         <button
           type="button"
-          onClick={"decrease()"}
+          onClick={ handleDecrementClick}
         >
           -
         </button>
-
+        <button
+          type="button"
+          onClick={(event) => handleEditClick(event, contact)}
+        >
+          Edit
+        </button>
         <button type="button" onClick={() => handleDeleteClick(contact.id)}>
           Delete
         </button>
@@ -29,8 +46,3 @@ const ReadOnlyRow = ({contact, handleEditClick, handleDeleteClick }) => {
 
 export default ReadOnlyRow;
 
-
-// function increment() {
-//     contact.foodQuantity += 1
-//     countEl.textContent = count
-// }

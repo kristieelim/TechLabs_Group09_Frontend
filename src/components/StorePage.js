@@ -83,9 +83,9 @@ export default function StorePage() {
     setEditContactId(contact.id);
 
     const formValues = {
-      fullName: contact.fullName,
-      phoneNumber: contact.phoneNumber,
-      email: contact.email,
+      food: contact.food,
+      foodQuantity: contact.foodQuantity,
+    
     };
 
     setEditFormData(formValues);
@@ -103,10 +103,9 @@ export default function StorePage() {
     newContacts.splice(index, 1);
 
     setContacts(newContacts);
-  };
-
-
-
+  };  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+               
 
   return (
     
@@ -116,16 +115,16 @@ export default function StorePage() {
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
-          name="fullName"
+          name="food"
           required="required"
           placeholder="Enter Food Name"
           onChange={handleAddFormChange}
         />
         <input
-          type="text"
-          name="phoneNumber"
+          type="number"
+          name="foodQuantity"
           required="required"
-          placeholder="Enter Food quantity"
+          placeholder="Enter Food Quantity"
           onChange={handleAddFormChange}
         />
 
@@ -139,7 +138,6 @@ export default function StorePage() {
             <tr>
               <th>Type</th>
               <th>Amount</th>
-              {/* <th>Email</th> */}
               <th>Actions</th>
             </tr>
           </thead>
