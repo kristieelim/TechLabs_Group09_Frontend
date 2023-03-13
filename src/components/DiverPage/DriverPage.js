@@ -18,6 +18,7 @@ export default function DriverPage() {
                         <th>Store</th>
                         <th>Food Type</th>
                         <th>Amount</th>
+                        <th>Unit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,7 @@ export default function DriverPage() {
                                 <tr>
                                     <td>{f.type}</td>
                                     <td>{f.amount}</td>
+                                    <td>{f.unit}</td>
                                 </tr>
                             ))}
                         </Fragment>
