@@ -3,6 +3,8 @@ import {nanoid} from 'nanoid';
 import data from "./stores-mock-data.json";
 import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
+import Table from 'react-bootstrap/Table';
+
 
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState(data);
@@ -114,7 +116,7 @@ export default function AdminPage_Stores() {
     <div className="app-container">
     <h1>Admin Page - List of Stores</h1>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Name</th>
@@ -143,7 +145,7 @@ export default function AdminPage_Stores() {
               </Fragment>
             ))}
           </tbody>
-        </table>
+        </Table>
       </form>
 
       <h2>Add a Store</h2>

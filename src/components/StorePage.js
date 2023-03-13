@@ -3,7 +3,7 @@ import {nanoid} from 'nanoid';
 import data from "./food-data.json";
 import ReadOnlyRow from './foodReadOnlyRow';
 import EditableRow from './FoodEditable';
-
+import Table from 'react-bootstrap/Table';
 
 export default function StorePage() {
   const [foods, setfoods] = useState(data);
@@ -144,7 +144,7 @@ export default function StorePage() {
 
     
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Type</th>
@@ -172,7 +172,7 @@ export default function StorePage() {
               </Fragment>
             ))}
           </tbody>
-        </table>
+        </Table>
       </form>
     </div>
   );

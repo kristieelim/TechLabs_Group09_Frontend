@@ -3,6 +3,8 @@ import {nanoid} from 'nanoid';
 import data from "./drivers-mock-data.json";
 import ReadOnlyRow from './driverReadOnlyRow';
 import EditableRow from './driverEditableRow';
+import Table from 'react-bootstrap/Table';
+
 
 export default function AdminPage_Drivers() {
   const [contacts, setContacts] = useState(data);
@@ -109,7 +111,7 @@ export default function AdminPage_Drivers() {
     <div className="app-container">
     <h1>Admin Page - List of Drivers</h1>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Name</th>
@@ -137,7 +139,7 @@ export default function AdminPage_Drivers() {
               </Fragment>
             ))}
           </tbody>
-        </table>
+        </Table>
       </form>
 
       <h2>Add a Driver</h2>
