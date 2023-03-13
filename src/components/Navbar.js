@@ -12,7 +12,7 @@ export default function Navbar() {
       <Link to="/" className="site-title">
         Navigation
       </Link>
-      <ul>
+      <ul className="navlist">
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">StorePage</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">DriverPage</OldSchoolMenuLink>

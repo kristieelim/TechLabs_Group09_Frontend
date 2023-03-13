@@ -40,7 +40,22 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 position: relative;
+
+
 }
+
+.navlist{
+  display:flex;
+  margin: 25px;
+
+  li {
+    text-decoration: ;
+
+  }
+
+}
+
+
 
 /* /* .nav--logo_text, .nav--title {
   margin: 0;
