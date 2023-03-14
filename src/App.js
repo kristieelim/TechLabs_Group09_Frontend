@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route ,Link, Routes} from "react-router-dom";
 import StorePage from "./components/StorePage/StorePage";
-import DriverPage from "./components/DiverPage/DriverPage"; 
+import DriverPage from "./components/DriverPage/DriverPage"; 
 import AdminPage_Stores from "./components/AdminPage_Stores/AdminPage_Stores";
 import AdminPage_Drivers from "./components/AdminPage_Drivers/AdminPage_Drivers";
 import HomePage from "./components/HomePage";
