@@ -156,7 +156,7 @@ export default function AdminPage_Stores() {
           required="required"
           placeholder="Enter a name"
           onChange={handleAddFormChange}
-        />
+        /> 
         <input
           type="text"
           name="address"
