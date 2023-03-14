@@ -57,6 +57,7 @@ export default function AdminPage_Stores() {
       email: addFormData.email,
     };
 
+    //add data to database
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
   };
