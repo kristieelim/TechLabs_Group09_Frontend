@@ -1,24 +1,26 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment}  from 'react'
 import {nanoid} from 'nanoid';
-import data from "./food-data.json";
-import ReadOnlyRow from './foodReadOnlyRow';
-import EditableRow from './FoodEditable';
+import data from "./stores-mock-data.json";
+import ReadOnlyRow from './storeReadOnlyRow';
+import EditableRow from './storeEditableRow';
+import Table from 'react-bootstrap/Table';
 
 
-export default function StorePage() {
-  const [contacts, setContacts] = useState(data);
+export default function AdminPage_Stores() {
+    const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
-    food: "",
-    foodQuantity: Number,
-
+    fullName: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
   });
 
   const [editFormData, setEditFormData] = useState({
-    food: "",
-    foodQuantity: Number,
+    fullName: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
   });
-
-
 
   const [editContactId, setEditContactId] = useState(null);
 
@@ -51,10 +53,13 @@ export default function StorePage() {
 
     const newContact = {
       id: nanoid(),
-      food: addFormData.food,
-      foodQuantity: addFormData.foodQuantity,
+      fullName: addFormData.fullName,
+      address: addFormData.address,
+      phoneNumber: addFormData.phoneNumber,
+      email: addFormData.email,
     };
 
+    //add data to database
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
   };
@@ -64,8 +69,10 @@ export default function StorePage() {
 
     const editedContact = {
       id: editContactId,
-      food: editFormData.food,
-      foodQuantity: editFormData.foodQuantity,
+      fullName: editFormData.fullName,
+      address: editFormData.address,
+      phoneNumber: editFormData.phoneNumber,
+      email: editFormData.email,
     };
 
     const newContacts = [...contacts];
@@ -84,6 +91,7 @@ export default function StorePage() {
 
     const formValues = {
       fullName: contact.fullName,
+      address: contact.address,
       phoneNumber: contact.phoneNumber,
       email: contact.email,
     };
@@ -105,41 +113,17 @@ export default function StorePage() {
     setContacts(newContacts);
   };
 
-
-
-
   return (
-    
     <div className="app-container">
-    <h1>Stores Page</h1>
-    <h2>Add Food</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter Food Name"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter Food quantity"
-          onChange={handleAddFormChange}
-        />
-
-        <button type="submit">Add</button>
-      </form>
-
-    
+    <h1>Admin Page - List of Stores</h1>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Type</th>
-              <th>Amount</th>
-              {/* <th>Email</th> */}
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone Number</th>
+              <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -162,7 +146,40 @@ export default function StorePage() {
               </Fragment>
             ))}
           </tbody>
-        </table>
+        </Table>
+      </form>
+
+      <h2>Add a Store</h2>
+      <form onSubmit={handleAddFormSubmit}>
+        <input
+          type="text"
+          name="fullName"
+          required="required"
+          placeholder="Enter a name"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="address"
+          required="required"
+          placeholder="Enter an address"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="phoneNumber"
+          required="required"
+          placeholder="Enter a phone number"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="Enter an email"
+          onChange={handleAddFormChange}
+        />
+        <button type="submit">Add</button>
       </form>
     </div>
   );

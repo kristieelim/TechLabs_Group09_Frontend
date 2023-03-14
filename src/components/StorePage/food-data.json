@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "food": "banana",
+      "foodQuantity": 3,
+      "unit": "-"
+    },
+    {
+      "id": 2,
+      "food": "nuddles",
+      "foodQuantity": 3,
+      "unit": "g"
+    },
+    {
+      "id": 3,
+      "food": "melon",
+      "foodQuantity": 3,
+      "unit": "-"
+
+    },
+    {
+      "id": 4,
+      "food": "bread",
+      "foodQuantity": 5,
+      "unit": "-"
+    },
+    {
+      "id": 5,
+      "food": "meat",
+      "foodQuantity": 2,
+      "unit": "box"
+    }
+  ]

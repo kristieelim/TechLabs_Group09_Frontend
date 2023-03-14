@@ -5,11 +5,11 @@
       "collectionDate": "01.04.2022",
       "storeName": "Kaufland Aachen, Vaalser Str.",
       "food": [
-        {"type": "baked goods", "amount": 3},
-        {"type": "fruit", "amount": 1},
-        {"type": "vegetables", "amount": 1},
-        {"type": "dairy products", "amount": 7},
-        {"type": "meat", "amount": 11}
+        {"type": "baked goods", "amount": 3, "unit": "box"},
+        {"type": "fruit", "amount": 1,"unit": "box"},
+        {"type": "vegetables", "amount": 1,"unit": "box"},
+        {"type": "dairy products", "amount": 7,"unit": "box"},
+        {"type": "meat", "amount": 11,"unit": "box"}
       ]
     },
     {
@@ -18,9 +18,9 @@
         "collectionDate": "01.04.2022",
         "storeName": "Hilal Supermarkt",
         "food": [
-          {"type": "baked goods", "amount": 2},
-          {"type": "fruit", "amount": 1},
-          {"type": "vegetables", "amount": 1}
+          {"type": "baked goods", "amount": 2,"unit": "box"},
+          {"type": "fruit", "amount": 1,"unit": "box"},
+          {"type": "vegetables", "amount": 1,"unit": "box"}
         ]
     },
     {
@@ -29,7 +29,7 @@
         "collectionDate": "01.04.2022",
         "storeName": "Lemongrass",
         "food": [
-          {"type": "sushi", "amount": 20}
+          {"type": "sushi", "amount": 20,"unit": "box"}
         ]
     },
     {
@@ -38,7 +38,7 @@
         "collectionDate": "01.04.2022",
         "storeName": "Backwerk",
         "food": [
-          {"type": "baked goods", "amount": 5}
+          {"type": "baked goods", "amount": 5,"unit": "box"}
         ]
     }
   ]

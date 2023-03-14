@@ -1,21 +1,21 @@
-import React, {useState, Fragment}  from 'react'
+import React, {useState, Fragment} from 'react';
 import {nanoid} from 'nanoid';
-import data from "./stores-mock-data.json";
-import ReadOnlyRow from './storeReadOnlyRow';
-import EditableRow from './storeEditableRow';
+import data from "./drivers-mock-data.json";
+import ReadOnlyRow from './driverReadOnlyRow';
+import EditableRow from './driverEditableRow';
+import Table from 'react-bootstrap/Table';
 
-export default function AdminPage_Stores() {
-    const [contacts, setContacts] = useState(data);
+
+export default function AdminPage_Drivers() {
+  const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     fullName: "",
-    address: "",
     phoneNumber: "",
     email: "",
   });
 
   const [editFormData, setEditFormData] = useState({
     fullName: "",
-    address: "",
     phoneNumber: "",
     email: "",
   });
@@ -52,12 +52,10 @@ export default function AdminPage_Stores() {
     const newContact = {
       id: nanoid(),
       fullName: addFormData.fullName,
-      address: addFormData.address,
       phoneNumber: addFormData.phoneNumber,
       email: addFormData.email,
     };
 
-    //add data to database
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
   };
@@ -68,7 +66,6 @@ export default function AdminPage_Stores() {
     const editedContact = {
       id: editContactId,
       fullName: editFormData.fullName,
-      address: editFormData.address,
       phoneNumber: editFormData.phoneNumber,
       email: editFormData.email,
     };
@@ -89,7 +86,6 @@ export default function AdminPage_Stores() {
 
     const formValues = {
       fullName: contact.fullName,
-      address: contact.address,
       phoneNumber: contact.phoneNumber,
       email: contact.email,
     };
@@ -113,13 +109,12 @@ export default function AdminPage_Stores() {
 
   return (
     <div className="app-container">
-    <h1>Admin Page - List of Stores</h1>
+    <h1>Admin Page - List of Drivers</h1>
       <form onSubmit={handleEditFormSubmit}>
-        <table>
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Address</th>
               <th>Phone Number</th>
               <th>Email</th>
               <th>Actions</th>
@@ -144,23 +139,16 @@ export default function AdminPage_Stores() {
               </Fragment>
             ))}
           </tbody>
-        </table>
+        </Table>
       </form>
 
-      <h2>Add a Store</h2>
+      <h2>Add a Driver</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
           name="fullName"
           required="required"
           placeholder="Enter a name"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an address"
           onChange={handleAddFormChange}
         />
         <input
@@ -174,7 +162,7 @@ export default function AdminPage_Stores() {
           type="email"
           name="email"
           required="required"
-          placeholder="Enter an email"
+          placeholder="Enter an email address"
           onChange={handleAddFormChange}
         />
         <button type="submit">Add</button>
