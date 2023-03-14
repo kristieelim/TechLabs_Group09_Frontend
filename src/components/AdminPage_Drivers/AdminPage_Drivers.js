@@ -110,6 +110,33 @@ export default function AdminPage_Drivers() {
   return (
     <div className="app-container">
     <h1>Admin Page - List of Drivers</h1>
+
+    <h2>Add a driver</h2>
+      <form onSubmit={handleAddFormSubmit}>
+        <input
+          type="text"
+          name="fullName"
+          required="required"
+          placeholder="Enter a name"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="text"
+          name="phoneNumber"
+          required="required"
+          placeholder="Enter a phone number"
+          onChange={handleAddFormChange}
+        />
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="Enter an email address"
+          onChange={handleAddFormChange}
+        />
+        <button type="submit">Add</button>
+      </form>
+
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>
           <thead>
@@ -140,32 +167,6 @@ export default function AdminPage_Drivers() {
             ))}
           </tbody>
         </Table>
-      </form>
-
-      <h2>Add a Driver</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email address"
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
       </form>
     </div>
   );
