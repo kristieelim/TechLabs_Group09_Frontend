@@ -1,190 +1,112 @@
-import { useRef, useState, useEffect } from "react";
-import axios from "../api/axios";
+import React, { useState, setState } from "react";
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/api/auth/register";
+function RegistrationForm() {
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState(null);
 
-const Register = () => {
-  const userRef = useRef();
-  const errRef = useRef();
-
-  const [user, setUser] = useState("");
-  const [validName, setValidName] = useState(false);
-  const [userFocus, setUserFocus] = useState(false);
-
-  const [pwd, setPwd] = useState("");
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
-
-  const [matchPwd, setMatchPwd] = useState("");
-  const [validMatch, setValidMatch] = useState(false);
-  const [matchFocus, setMatchFocus] = useState(false);
-
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    const result = USER_REGEX.test(user);
-    console.log(result);
-    console.log(user);
-    setValidName(result);
-  }, [user]);
-
-  useEffect(() => {
-    const result = PWD_REGEX.test(pwd);
-    console.log(result);
-    console.log(pwd);
-    setValidPwd(result);
-    const match = pwd === matchPwd;
-    setValidMatch(match);
-  }, [pwd, matchPwd]);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd, matchPwd]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const v1 = USER_REGEX.test(user);
-    const v2 = PWD_REGEX.test(pwd);
-    if (!v1 || !v2) {
-      setErrMsg("Invalid Entry");
-      return;
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    if (id === "firstName") {
+      setFirstName(value);
     }
-    console.log(user, pwd);
-    setSuccess(true);
+    if (id === "lastName") {
+      setLastName(value);
+    }
+    if (id === "email") {
+      setEmail(value);
+    }
+    if (id === "password") {
+      setPassword(value);
+    }
+    if (id === "confirmPassword") {
+      setConfirmPassword(value);
+    }
+  };
 
-    /*
-        try{
-            const response await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd}))
-        }catch(err){
-
-        }
-        */
+  const handleSubmit = () => {
+    console.log(firstName, lastName, email, password, confirmPassword);
   };
 
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="#">Sign In</a>
-          </p>
-        </section>
-      ) : (
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errMsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Register</h1>
-          <form on onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-              aria-invalid={validName ? "false" : "true"}
-              aria-describedby="uidnote"
-              onFocus={() => setUserFocus(true)}
-              onBlur={() => setUserFocus(false)}
-            />
-            <p
-              id="uidnote"
-              className={
-                userFocus && user && !validName ? "instructions" : "offscreen"
-              }
-            >
-              4 to 24 characters.
-              <br />
-              Must begin with a letter.
-              <br />
-              Letters, numbers, underscores, hyphens allowed.
-            </p>
-
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-              aria-invalid={validPwd ? "false" : "true"}
-              aria-describedby="pwdnote"
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
-            />
-            <p
-              id="pwdnote"
-              className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-            >
-              8 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters, a number and a
-              special character.
-              <br />
-              Allowed special characters:
-              <span aria-label="exclamation mark">!</span>
-              <span aria-label="at symbol">@</span>
-              <span aria-label="hashtag">#</span>
-              <span aria-label="dollar sign">$</span>
-              <span aria-label="percent">%</span>
-            </p>
-
-            <label htmlFor="confirm_pwd">Confirm Password:</label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              onChange={(e) => setMatchPwd(e.target.value)}
-              value={matchPwd}
-              required
-              aria-invalid={validMatch ? "false" : "true"}
-              aria-describedby="confirmnote"
-              onFocus={() => setMatchFocus(true)}
-              onBlur={() => setMatchFocus(false)}
-            />
-            <p
-              id="confirmnote"
-              className={
-                matchFocus && !validMatch ? "instructions" : "offscreen"
-              }
-            >
-              Must match the first password input field.
-            </p>
-
-            <button
-              disabled={!validName || !validPwd || !validMatch ? true : false}
-            >
-              Sign Up
-            </button>
-          </form>
-
-          <p>
-            Already registered?
-            <br />
-            <span className="line">
-              {/*put router link here*/}
-              <a href="#">Sign In</a>
-            </span>
-          </p>
-        </section>
-      )}
-    </>
+    <div className="form">
+      <div className="form-body">
+        <div className="username">
+          <label className="form__label" for="firstName">
+            First Name{" "}
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            value={firstName}
+            onChange={(e) => handleInputChange(e)}
+            id="firstName"
+            placeholder="First Name"
+          />
+        </div>
+        <div className="lastname">
+          <label className="form__label" for="lastName">
+            Last Name{" "}
+          </label>
+          <input
+            type="text"
+            name=""
+            id="lastName"
+            value={lastName}
+            className="form__input"
+            onChange={(e) => handleInputChange(e)}
+            placeholder="LastName"
+          />
+        </div>
+        <div className="email">
+          <label className="form__label" for="email">
+            Email{" "}
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="form__input"
+            value={email}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Email"
+          />
+        </div>
+        <div className="password">
+          <label className="form__label" for="password">
+            Password{" "}
+          </label>
+          <input
+            className="form__input"
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Password"
+          />
+        </div>
+        <div className="confirm-password">
+          <label className="form__label" for="confirmPassword">
+            Confirm Password{" "}
+          </label>
+          <input
+            className="form__input"
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Confirm Password"
+          />
+        </div>
+      </div>
+      <div class="footer">
+        <button onClick={() => handleSubmit()} type="submit" class="btn">
+          Register
+        </button>
+      </div>
+    </div>
   );
-};
+}
 
-export default Register;
+export default RegistrationForm;
