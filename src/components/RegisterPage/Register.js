@@ -3,6 +3,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import "./Register.css";
+import Select from 'react-select';
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/api/auth/register";
@@ -10,6 +11,11 @@ const REGISTER_URL = "/api/auth/register";
 const Register = () => {
   const userRef = useRef();
   const errRef = useRef();
+
+  const options = [
+    { value: "DRIVER", label: "Driver" },
+    { value: "RESTAURANT", label: "Store Employee" },
+  ];
 
   const [accountType, setAccountType] = useState(null);
   const [firstName, setFirstName] = useState(null);
@@ -41,6 +47,10 @@ const Register = () => {
     setErrMsg("");
   }, [accountType, firstName, lastName, email, pwd, matchPwd]);
 
+  const handleTypeSelect = (e) => {
+    setAccountType(e.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const v2 = PWD_REGEX.test(pwd);
@@ -56,12 +66,12 @@ const Register = () => {
           email: email,
           firstName: firstName,
           lastName: lastName,
-          type: "DRIVER",
+          type: accountType,
           password: pwd,
         }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true
+          withCredentials: false
         }
       );
 
@@ -105,6 +115,16 @@ const Register = () => {
           <h1>Register</h1>
 
           <form onSubmit={handleSubmit}>
+            <label htmlFor="accountType">Select user type:</label>
+            <Select
+              options={options}
+              onChange={handleTypeSelect}
+              value={options.filter(function(option) {
+                return option.value === accountType
+              })}
+              label="Single select"
+              required
+            />;
 
             <label htmlFor="firstName">First Name:</label>
             <input
