@@ -1,45 +1,116 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-//import "./Login.css";
+import { useRef, useState, useEffect, useContext } from "react";
+import AuthContext from "./context/AuthProvider";
 
-export default function Login() {
+import axios from "./api/axios";
+const LOGIN_URL = "/api/auth/login";
+
+const Login = () => {
+  const { setAuth } = useContext(AuthContext);
+  const userRef = useRef();
+  const errRef = useRef();
+
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState("");
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, pwd]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ email: email, password: pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      //console.log(JSON.stringify(response));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ email, pwd, roles, accessToken});
+      setEmail("");
+      setPwd("");
+      setSuccess(true);
+    } catch (err) {
+        if(!err?.response){
+            setErrMsg('No Server Response');
+        }else if (err.response?.status === 400){
+            setErrMsg('Missing Email or Password');
+        }else if (err.response?.status === 401){
+            setErrMsg('Unauthorized');
+        }else{
+            setErrMsg('Login Failed');
+        }
+        errRef.current.focus();
+    }
+  };
 
   return (
-    <div className="Login">
-      <h2>Login</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
+    <>
+      {success ? (
+        <section>
+          <h1>You are logged in!</h1>
+          <br />
+          <p>
+            <a href="#">Go to Home</a>
+          </p>
+        </section>
+      ) : (
+        <section>
+          <p
+            ref={errRef}
+            className={errMsg ? "errmsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type=""
+              id=""
+              ref={userRef}
+              autoComplete="off"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+
+            <button>Sign In</button>
+          </form>
+          <p>
+            Need an Account?
+            <br />
+            <span className="line">
+              {/*put router link here*/}
+              <a href="#">Sign Up</a>
+            </span>
+          </p>
+        </section>
+      )}
+    </>
   );
-}
+};
+
+export default Login;

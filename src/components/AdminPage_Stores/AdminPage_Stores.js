@@ -5,10 +5,9 @@ import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
 import Table from 'react-bootstrap/Table';
 
-
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState(data);
-  const [addFormData, setAddFormData] = useState({
+    const [addFormData, setAddFormData] = useState({
     fullName: "",
     address: "",
     phoneNumber: "",
