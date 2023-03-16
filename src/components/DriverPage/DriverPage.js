@@ -2,7 +2,8 @@ import React, {useState, Fragment} from 'react'
 import data from "./appointments-mock-data.json";
 import Table from 'react-bootstrap/Table';
 import GoogleMap from '../GoogleMap';
-import OpenMaps from '../Openmaps';
+// import OpenMaps from '../Openmaps';
+import MyMap from '../MyMap';
 
 export default function DriverPage() {
 
@@ -13,8 +14,7 @@ export default function DriverPage() {
             <h1>Driver Page</h1>
             <h6>Driver Name: {appointments[0].driverName}</h6>
             <h6>Collection Date: {appointments[0].collectionDate}</h6>
-            
-            {/* <OpenMaps />  */}
+            <MyMap />
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -41,7 +41,6 @@ export default function DriverPage() {
                     ))}
                 </tbody>
             </Table>
-            <GoogleMap className="googlemaps"/>
         </div>
     )
 }
