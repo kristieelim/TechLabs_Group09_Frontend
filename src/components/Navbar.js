@@ -15,6 +15,7 @@ export default function Navbar() {
       <ul className="navlist">
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Login</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Register">Register</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">StorePage</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">DriverPage</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">Page for Admins - List of Stores</OldSchoolMenuLink>
