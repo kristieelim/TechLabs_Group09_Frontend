@@ -1,9 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import {
-  faCheck,
-  faTimes,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import "./Register.css";
@@ -60,12 +56,12 @@ const Register = () => {
           email: email,
           firstName: firstName,
           lastName: lastName,
-          type: accountType,
+          type: "DRIVER",
           password: pwd,
         }),
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          withCredentials: true
         }
       );
 
@@ -73,14 +69,8 @@ const Register = () => {
       console.log(response.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
-      //clear state and controlled inputs
-      //need value attrib on inputs for this
-      setAccountType("");
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPwd("");
-      setMatchPwd("");
+      //clear input fields
+
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -115,6 +105,7 @@ const Register = () => {
           <h1>Register</h1>
 
           <form onSubmit={handleSubmit}>
+
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
@@ -122,6 +113,7 @@ const Register = () => {
               ref={userRef}
               autoComplete="off"
               onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
               required
               placeholder="First Name"
             />
@@ -133,10 +125,10 @@ const Register = () => {
               ref={userRef}
               autoComplete="off"
               onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
               required
               placeholder="Last Name"
             />
-
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -144,10 +136,10 @@ const Register = () => {
               ref={userRef}
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
               placeholder="Email"
             />
-
             <label htmlFor="password">
               Password:
               <FontAwesomeIcon
@@ -189,7 +181,6 @@ const Register = () => {
               <span aria-label="dollar sign">$</span>{" "}
               <span aria-label="percent">%</span>
             </p>
-
             <label htmlFor="confirm_pwd">
               Confirm Password:
               <span className={validMatchPwd && matchPwd ? "valid" : "hide"}>
@@ -221,7 +212,6 @@ const Register = () => {
               <br />
               Must match the first password input field.
             </p>
-
             <button disabled={!validPwd || !validMatchPwd ? true : false}>
               Sign Up
             </button>
