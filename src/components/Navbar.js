@@ -18,8 +18,8 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/Register">Register</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">StorePage</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">DriverPage</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Stores">Page for Admins - List of Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">Page for Admins - List of Drivers</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Stores">List of Stores</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">List of Drivers</OldSchoolMenuLink>
       </ul>
     </nav>
   )
