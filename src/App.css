@@ -51,6 +51,7 @@ padding: 0 1rem;
 
 }
 
+
 .navbar ul {
   padding: 0;
   margin: 0;
@@ -84,9 +85,10 @@ padding: 0 1rem;
   margin: 0;
 } */
 
-.nav--logo_text {
+.tafel {
   margin-left: 2px;
   margin-right: auto;
+  /* margin-top: 0cap; */
   color: #EE7F00;
   font-weight: 700;
   font-size: 32px;

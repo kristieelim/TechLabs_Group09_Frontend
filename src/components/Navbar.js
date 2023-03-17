@@ -8,13 +8,14 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <img src={icon} className="nav--icon" />
-            <h3 className="nav--logo_text">Tafel Route</h3>
+            <h3 className="tafel">Tafel Route</h3>
       {/* <Link  className="site-title">
         Navigation
       </Link> */}
       <ul>
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Login</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Login2">Login2</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Register</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">StorePage</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">DriverPage</OldSchoolMenuLink>

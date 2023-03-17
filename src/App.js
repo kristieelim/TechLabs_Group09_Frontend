@@ -7,6 +7,7 @@ import AdminPage_Stores from "./components/AdminPage_Stores/AdminPage_Stores";
 import AdminPage_Drivers from "./components/AdminPage_Drivers/AdminPage_Drivers";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
+import Login2 from "./components/Login2";
 import Register from "./components/RegisterPage/Register";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
@@ -29,6 +30,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/Login" element={<Login />} />
+          <Route exact path="/Login2" element={<Login2 />} />
           <Route exact path="/Register" element={<Register />} />
           <Route exact path="/StorePage" element={<StorePage />} />
           <Route exact path="/DriverPage" element={<DriverPage />} />
