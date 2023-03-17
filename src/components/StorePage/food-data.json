@@ -6,10 +6,10 @@
       "unit": "-"
     },
     {
-      "id": 2,
+      "id":2,
       "food": "nuddles",
-      "foodQuantity": 3,
-      "unit": "g"
+      "foodQuantity": 0.5,
+      "unit": "kg"
     },
     {
       "id": 3,
