@@ -9,10 +9,10 @@ export default function Navbar() {
     <nav className="navbar">
       <img src={icon} className="nav--icon" />
             <h3 className="nav--logo_text">Tafel Route</h3>
-      <Link to="/" className="site-title">
+      {/* <Link  className="site-title">
         Navigation
-      </Link>
-      <ul className="navlist">
+      </Link> */}
+      <ul>
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Login</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Register</OldSchoolMenuLink>
@@ -31,10 +31,10 @@ function OldSchoolMenuLink({ children, to }) {
     const match = location.pathname === to;
   
     return (
-      <div className={match ? "active" : ""}>
-        {match ? "> " : ""}
+      <li className={match ? "active" : ""}>
+        {match ? " " : ""}
         <Link to={to}>{children}</Link>
-      </div>
+      </li>
     );
   }
 

@@ -13,14 +13,14 @@ export default function StorePage() {
 
   const [addFormData, setAddFormData] = useState({
     food: "",
-    foodQuantity: Number,
+    foodQuantity: 0.0,
     unit: "",
 
   });
 
   const [editFormData, setEditFormData] = useState({
     food: "",
-    foodQuantity: Number,
+    foodQuantity: 0.0,
     unit: "",
   });
 
@@ -145,10 +145,11 @@ export default function StorePage() {
           onChange={handleAddFormChange}
         />
         <input
-          type="number"
+          type="text"
           name="foodQuantity"
           required="required"
           placeholder="Enter Food Amount"
+          pattern="\d+(\.\d{1,2})?"
           onChange={handleAddFormChange}
         />
         {/* <input
