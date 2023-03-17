@@ -14,7 +14,8 @@ export default function DriverPage() {
             <h1>Driver Page</h1>
             <h6>Driver Name: {appointments[0].driverName}</h6>
             <h6>Collection Date: {appointments[0].collectionDate}</h6>
-            <MyMap />
+            {/* <MyMap /> */}
+            
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -41,6 +42,7 @@ export default function DriverPage() {
                     ))}
                 </tbody>
             </Table>
+            <GoogleMap />
         </div>
     )
 }
