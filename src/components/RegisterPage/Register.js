@@ -5,9 +5,6 @@ import axios from "../api/axios";
 import "./Register.css";
 import Select from 'react-select';
 
-
-
-
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/api/auth/register";
 
@@ -73,8 +70,7 @@ const Register = () => {
           password: pwd,
         }),
         {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: false
+          headers: { "Content-Type": "application/json" }
         }
       );
 

@@ -16,6 +16,7 @@ const Login = () => {
 
   useEffect(() => {
     userRef.current.focus();
+    //axios.get("/api/user").then(x => console.log(x));
   }, []);
 
   useEffect(() => {
@@ -30,8 +31,7 @@ const Login = () => {
         LOGIN_URL,
         JSON.stringify({ email: email, password: pwd }),
         {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          headers: { "Content-Type": "application/json" }
         }
       );
       console.log(JSON.stringify(response?.data));
