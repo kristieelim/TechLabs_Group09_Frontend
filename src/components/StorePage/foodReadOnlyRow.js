@@ -19,7 +19,7 @@ const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
       <td>{food.unit}</td> 
       <td>
 
-        <button
+        {/* <button
           type="button"
           onClick={handleIncrementClick }
         >
@@ -30,7 +30,7 @@ const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
           onClick={ handleDecrementClick}
         >
           -
-        </button>
+        </button> */}
         <button
           type="button"
           onClick={(event) => handleEditClick(event, food)}

@@ -116,13 +116,24 @@ export default function StorePage() {
     <div className="app-container">
     <h1>Store Page</h1>
 
-    <h2>Select Date</h2>
-    <DatePicker 
-      selected={selectedDate} 
-      onChange={date => setSelectedDate(date)} 
-      dateFormat='dd/MM/yyyy'
-      minDate={new Date()}
-    />
+    <h2>Select Date and time</h2>
+    <div style={{ display: "inline-block" }}>
+      <DatePicker 
+        selected={selectedDate} 
+        onChange={date => setSelectedDate(date)} 
+        dateFormat='dd/MM/yyyy'
+        minDate={new Date()}
+      />
+    </div>
+    <div style={{ display: "inline-block", marginLeft: "10px" }}>
+      <input
+        type="time"
+        name="time"
+        required="required"
+        onChange={handleAddFormChange}
+      />
+    </div>
+
 
     <h2>Add Food</h2>
       <form onSubmit={handleAddFormSubmit}>
@@ -137,16 +148,30 @@ export default function StorePage() {
           type="number"
           name="foodQuantity"
           required="required"
-          placeholder="Enter Food Quantity"
+          placeholder="Enter Food Amount"
           onChange={handleAddFormChange}
         />
-        <input
+        {/* <input
           type="text"
           name="unit"
           required="required"
           placeholder="Enter Unit"
           onChange={handleAddFormChange}
-        />
+        /> */}
+        <select
+        name="unit"
+        required="required"
+        onChange={handleAddFormChange}
+      >
+        <option value="">Select Unit</option>
+        <option value="kg">kg</option>
+        <option value="g">liter</option>
+        <option value="lb">piece</option>
+        <option value="oz">box</option>
+      </select>
+
+
+
 
         <button type="submit">Add</button>
       </form>
