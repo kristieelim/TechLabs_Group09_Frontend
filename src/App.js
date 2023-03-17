@@ -32,16 +32,8 @@ class App extends Component {
           <Route exact path="/Register" element={<Register />} />
           <Route exact path="/StorePage" element={<StorePage />} />
           <Route exact path="/DriverPage" element={<DriverPage />} />
-          <Route
-            exact
-            path="/AdminPage_Stores"
-            element={<AdminPage_Stores />}
-          />
-          <Route
-            exact
-            path="/AdminPage_Drivers"
-            element={<AdminPage_Drivers />}
-          />
+          <Route exact path="/AdminPage_Stores" element={<AdminPage_Stores />} />
+          <Route exact path="/AdminPage_Drivers" element={<AdminPage_Drivers />} />
         </Routes>
       </div>
     );

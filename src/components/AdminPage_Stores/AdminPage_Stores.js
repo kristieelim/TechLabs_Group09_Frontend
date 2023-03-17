@@ -5,10 +5,9 @@ import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
 import Table from 'react-bootstrap/Table';
 
-
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState(data);
-  const [addFormData, setAddFormData] = useState({
+    const [addFormData, setAddFormData] = useState({
     fullName: "",
     address: "",
     phoneNumber: "",
@@ -181,39 +180,6 @@ export default function AdminPage_Stores() {
             ))}
           </tbody>
         </Table>
-      </form>
-
-      <h2>Add a Store</h2>
-      <form onSubmit={handleAddFormSubmit}>
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name"
-          onChange={handleAddFormChange}
-        /> 
-        <input
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an address"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number"
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email"
-          onChange={handleAddFormChange}
-        />
-        <button type="submit">Add</button>
       </form>
     </div>
   );
