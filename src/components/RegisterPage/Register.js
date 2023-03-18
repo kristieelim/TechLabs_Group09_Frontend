@@ -128,10 +128,29 @@ const Register = () => {
     <>
       {success ? (
         <section>
-          <h1>Success</h1>
-          <p>
-            <a href="#">Sign In</a>
-          </p>
+          <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              ></Box>
+              <Typography component="h1" variant="h5">
+                Registration Successful
+              </Typography>
+              <Grid container>
+                <Grid item>
+                  <Link href="/Login" variant="body2">
+                    Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+            </Container>
+          </ThemeProvider>
         </section>
       ) : (
         <section>
@@ -166,7 +185,6 @@ const Register = () => {
                   onSubmit={handleSubmit}
                   sx={{ mt: 3 }}
                 >
-
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <Select
@@ -324,7 +342,7 @@ const Register = () => {
                   >
                     Sign Up
                   </Button>
-                  <Grid container justifyContent="flex-end">
+                  <Grid container>
                     <Grid item>
                       <Link href="/Login" variant="body2">
                         Already have an account? Sign in
