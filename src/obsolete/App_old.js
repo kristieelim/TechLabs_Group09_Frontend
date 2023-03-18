@@ -5,10 +5,10 @@ import StorePage from "./components/StorePage";
 import DriverPage from "./components/DriverPage"; 
 import AdminPage_Stores from "./components/AdminPage_Stores";
 import AdminPage_Drivers from "./components/AdminPage_Drivers";
-import HomePage from "./components/HomePage";
+import HomePage from "../components/HomePage";
 
-import Navbar from "./components/Navbar";
-import Main from "./components/Main";
+import Navbar from "../components/Navbar";
+import Main from "../components/Main";
 // import { Route, Routes } from "react-router-dom"
 
 class App extends Component{

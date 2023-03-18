@@ -14,11 +14,10 @@ export default function Navbar() {
       </Link> */}
       <ul>
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Login">Login</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Login2">Login2</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Register">Register</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/StorePage">StorePage</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/DriverPage">DriverPage</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">List of Stores</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Drivers">List of Drivers</OldSchoolMenuLink>
       </ul>

@@ -112,30 +112,28 @@ export default function StorePage() {
   };
 
   return (
-    
     <div className="app-container">
-    <h1>Store Page</h1>
+      <h1>Store Page</h1>
 
-    <h2>Select Date and time</h2>
-    <div style={{ display: "inline-block" }}>
-      <DatePicker 
-        selected={selectedDate} 
-        onChange={date => setSelectedDate(date)} 
-        dateFormat='dd/MM/yyyy'
-        minDate={new Date()}
-      />
-    </div>
-    <div style={{ display: "inline-block", marginLeft: "10px" }}>
-      <input
-        type="time"
-        name="time"
-        required="required"
-        onChange={handleAddFormChange}
-      />
-    </div>
+      <h2>Select Date and Time</h2>
+      <div style={{ display: "inline-block" }}>
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd/MM/yyyy"
+          minDate={new Date()}
+        />
+      </div>
+      <div style={{ display: "inline-block", marginLeft: "10px" }}>
+        <input
+          type="time"
+          name="time"
+          required="required"
+          onChange={handleAddFormChange}
+        />
+      </div>
 
-
-    <h2>Add Food</h2>
+      <h2>Add Food</h2>
       <form onSubmit={handleAddFormSubmit}>
         <input
           type="text"
@@ -148,7 +146,7 @@ export default function StorePage() {
           type="text"
           name="foodQuantity"
           required="required"
-          placeholder="Enter Food Amount"
+          placeholder="Enter Food Quantity"
           pattern="\d+(\.\d{1,2})?"
           onChange={handleAddFormChange}
         />
@@ -159,25 +157,17 @@ export default function StorePage() {
           placeholder="Enter Unit"
           onChange={handleAddFormChange}
         /> */}
-        <select
-        name="unit"
-        required="required"
-        onChange={handleAddFormChange}
-      >
-        <option value="">Select Unit</option>
-        <option value="kg">kg</option>
-        <option value="g">liter</option>
-        <option value="lb">piece</option>
-        <option value="oz">box</option>
-      </select>
-
-
-
+        <select name="unit" required="required" onChange={handleAddFormChange}>
+          <option value="">Select Unit</option>
+          <option value="kg">kg</option>
+          <option value="g">liter</option>
+          <option value="lb">piece</option>
+          <option value="oz">box</option>
+        </select>
 
         <button type="submit">Add</button>
       </form>
 
-    
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>
           <thead>

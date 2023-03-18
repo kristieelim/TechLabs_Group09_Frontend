@@ -1,12 +1,45 @@
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import { useRef, useState, useEffect } from "react";
-import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faInfoCircle,} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import "./Register.css";
-import Select from 'react-select';
+import Select from "react-select";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/api/auth/register";
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://techlabs.org/location/aachen">
+        Tafel Route Group 9
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const theme = createTheme();
 
 const Register = () => {
   const userRef = useRef();
@@ -14,7 +47,7 @@ const Register = () => {
 
   const options = [
     { value: "DRIVER", label: "Driver" },
-    { value: "RESTAURANT", label: "Store Employee" },
+    { value: "EMPLOYEE", label: "Store Employee" },
   ];
 
   const [accountType, setAccountType] = useState(null);
@@ -70,7 +103,7 @@ const Register = () => {
           password: pwd,
         }),
         {
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
         }
       );
 
@@ -79,7 +112,6 @@ const Register = () => {
       console.log(JSON.stringify(response));
       setSuccess(true);
       //clear input fields
-
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -103,146 +135,207 @@ const Register = () => {
         </section>
       ) : (
         <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
+          <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                  <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                  Sign up
+                </Typography>
+                <p
+                  ref={errRef}
+                  className={errMsg ? "errmsg" : "offscreen"}
+                  aria-live="assertive"
+                >
+                  {errMsg}
+                </p>
 
-          <h1>Register</h1>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleSubmit}
+                  sx={{ mt: 3 }}
+                >
 
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="accountType">Select user type:</label>
-            <Select
-              options={options}
-              onChange={handleTypeSelect}
-              value={options.filter(function(option) {
-                return option.value === accountType
-              })}
-              label="Single select"
-              required
-            />;
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Select
+                        options={options}
+                        onChange={handleTypeSelect}
+                        value={options.filter(function (option) {
+                          return option.value === accountType;
+                        })}
+                        label="Single select"
+                        required
+                      />
+                    </Grid>
 
-            <label htmlFor="firstName">First Name:</label>
-            <input
-              type="text"
-              id="firstName"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-              required
-              placeholder="First Name"
-            />
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        name="firstName"
+                        required
+                        fullWidth
+                        label="First Name"
+                        autoFocus
+                        type="text"
+                        id="firstName"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={(e) => setFirstName(e.target.value)}
+                        value={firstName}
+                        placeholder="First Name"
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="lastName"
+                        label="Last Name"
+                        name="lastName"
+                        type="text"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={(e) => setLastName(e.target.value)}
+                        value={lastName}
+                        placeholder="Last Name"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        type="email"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        placeholder="Email"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        className={validPwd ? "valid" : "hide"}
+                      />
+                      <FontAwesomeIcon
+                        icon={faTimes}
+                        className={validPwd || !pwd ? "hide" : "invalid"}
+                      />
+                      <TextField
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        aria-invalid={validPwd ? "false" : "true"}
+                        aria-describedby="pwdnote"
+                        onFocus={() => setPwdFocus(true)}
+                        onBlur={() => setPwdFocus(false)}
+                        placeholder="Password"
+                      />
+                      <p
+                        id="pwdnote"
+                        className={
+                          pwdFocus && !validPwd ? "instructions" : "offscreen"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        <br />
+                        8 to 24 characters.
+                        <br />
+                        Must include uppercase and lowercase letters, a number
+                        and a special character.
+                        <br />
+                        Allowed special characters:{" "}
+                        <span aria-label="exclamation mark">!</span>{" "}
+                        <span aria-label="at symbol">@</span>{" "}
+                        <span aria-label="hashtag">#</span>{" "}
+                        <span aria-label="dollar sign">$</span>{" "}
+                        <span aria-label="percent">%</span>
+                      </p>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <span
+                        className={validMatchPwd && matchPwd ? "valid" : "hide"}
+                      >
+                        <FontAwesomeIcon icon={faCheck} />
+                      </span>
+                      <span
+                        className={
+                          validMatchPwd || !matchPwd ? "hide" : "invalid"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faTimes} />
+                      </span>
 
-            <label htmlFor="lastName">Last Name:</label>
-            <input
-              type="text"
-              id="lastName"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              required
-              placeholder="Last Name"
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-              required
-              placeholder="Email"
-            />
-            <label htmlFor="password">
-              Password:
-              <FontAwesomeIcon
-                icon={faCheck}
-                className={validPwd ? "valid" : "hide"}
-              />
-              <FontAwesomeIcon
-                icon={faTimes}
-                className={validPwd || !pwd ? "hide" : "invalid"}
-              />
-            </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-              aria-invalid={validPwd ? "false" : "true"}
-              aria-describedby="pwdnote"
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
-              placeholder="Password"
-            />
-            <p
-              id="pwdnote"
-              className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
-            >
-              <FontAwesomeIcon icon={faInfoCircle} />
-              <br />
-              8 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters, a number and a
-              special character.
-              <br />
-              Allowed special characters:{" "}
-              <span aria-label="exclamation mark">!</span>{" "}
-              <span aria-label="at symbol">@</span>{" "}
-              <span aria-label="hashtag">#</span>{" "}
-              <span aria-label="dollar sign">$</span>{" "}
-              <span aria-label="percent">%</span>
-            </p>
-            <label htmlFor="confirm_pwd">
-              Confirm Password:
-              <span className={validMatchPwd && matchPwd ? "valid" : "hide"}>
-                <FontAwesomeIcon icon={faCheck} />
-              </span>
-              <span className={validMatchPwd || !matchPwd ? "hide" : "invalid"}>
-                <FontAwesomeIcon icon={faTimes} />
-              </span>
-            </label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              onChange={(e) => setMatchPwd(e.target.value)}
-              value={matchPwd}
-              required
-              aria-invalid={validMatchPwd ? "false" : "true"}
-              aria-describedby="confirmnote"
-              onFocus={() => setMatchPwdFocus(true)}
-              onBlur={() => setMatchPwdFocus(false)}
-              placeholder="Confirm Password"
-            />
-            <p
-              id="confirmnote"
-              className={
-                matchPwdFocus && !validMatchPwd ? "instructions" : "offscreen"
-              }
-            >
-              <FontAwesomeIcon icon={faInfoCircle} />
-              <br />
-              Must match the first password input field.
-            </p>
-            <button disabled={!validPwd || !validMatchPwd ? true : false}>
-              Sign Up
-            </button>
-          </form>
-          <p>
-            Already registered?
-            <br />
-            <span className="line">
-              {/*put router link here*/}
-              <a href="#">Sign In</a>
-            </span>
-          </p>
+                      <TextField
+                        required
+                        fullWidth
+                        name="password"
+                        label="Confirm Password"
+                        type="password"
+                        id="confirm_pwd"
+                        onChange={(e) => setMatchPwd(e.target.value)}
+                        value={matchPwd}
+                        aria-invalid={validMatchPwd ? "false" : "true"}
+                        aria-describedby="confirmnote"
+                        onFocus={() => setMatchPwdFocus(true)}
+                        onBlur={() => setMatchPwdFocus(false)}
+                        placeholder="Confirm Password"
+                      />
+
+                      <p
+                        id="confirmnote"
+                        className={
+                          matchPwdFocus && !validMatchPwd
+                            ? "instructions"
+                            : "offscreen"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        <br />
+                        Must match the first password input field.
+                      </p>
+                    </Grid>
+                  </Grid>
+                  <Button
+                    disabled={!validPwd || !validMatchPwd ? true : false}
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign Up
+                  </Button>
+                  <Grid container justifyContent="flex-end">
+                    <Grid item>
+                      <Link href="/Login" variant="body2">
+                        Already have an account? Sign in
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Box>
+              <Copyright sx={{ mt: 5 }} />
+            </Container>
+          </ThemeProvider>
         </section>
       )}
     </>

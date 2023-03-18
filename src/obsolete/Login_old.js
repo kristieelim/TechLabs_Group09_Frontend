@@ -1,38 +1,8 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "./context/AuthProvider";
+
 import axios from "./api/axios";
-
 const LOGIN_URL = "/api/auth/login";
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://techlabs.org/location/aachen">
-        Tafel Route Group 9
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
@@ -98,23 +68,6 @@ const Login = () => {
         </section>
       ) : (
         <section>
-          <ThemeProvider theme={theme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
           <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
@@ -122,42 +75,30 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
+          <h1>Sign In</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type=""
+              id=""
               ref={userRef}
-              label="Email Address"
-              name="email"
-              //autoComplete="email"
-              autoFocus
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-            />
-            <TextField
-              margin="normal"
               required
-              fullWidth
-              name="password"
-              label="Password"
+            />
+
+            <label htmlFor="password">Password:</label>
+            <input
               type="password"
               id="password"
-              autoComplete="current-password"
               onChange={(e) => setPwd(e.target.value)}
               value={pwd}
+              required
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+
+            <button>Sign In</button>
+          </form>
           <p>
             Need an Account?
             <br />
@@ -166,11 +107,6 @@ const Login = () => {
               <a href="#">Sign Up</a>
             </span>
           </p>
-          </Box>
-          </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
-        </Container>
-      </ThemeProvider>
         </section>
       )}
     </>
