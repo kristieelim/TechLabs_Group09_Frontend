@@ -7,6 +7,8 @@ import Table from 'react-bootstrap/Table';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
+
+
 export default function StorePage() {
   const [foods, setfoods] = useState(data);
   const [selectedDate, setSelectedDate] = useState(null);

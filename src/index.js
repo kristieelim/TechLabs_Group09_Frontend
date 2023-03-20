@@ -7,14 +7,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import 'leaflet/dist/leaflet.css'
 import { AuthProvider } from './components/context/AuthProvider';
+import { ChakraProvider, theme } from '@chakra-ui/react'
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <App />
       </Router>
+    </ChakraProvider>
     </AuthProvider>
   </React.StrictMode>
 );

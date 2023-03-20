@@ -1,7 +1,7 @@
 import React, {useState, Fragment} from 'react'
 import data from "./appointments-mock-data.json";
 import Table from 'react-bootstrap/Table';
-import GoogleMap from '../GoogleMap';
+import GoogleMap from '../GoogleMap2';
 // import OpenMaps from '../Openmaps';
 import MyMap from '../MyMap';
 
