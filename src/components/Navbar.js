@@ -1,14 +1,12 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
-import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import icon from '../images/Tafel_Deutschland_logo.png'
-
 
 export default function Navbar() {
   return (
     <nav className="navbar">
       <img src={icon} className="nav--icon" />
-            <h3 className="tafel">Tafel Route</h3>
+      <h3 className="tafel">Tafel Route</h3>
       {/* <Link  className="site-title">
         Navigation
       </Link> */}
@@ -16,13 +14,19 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Missing">Missing</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Unauthorized">Unauthorized</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Stores">List of Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">List of Drivers</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Stores">
+          List of Stores
+        </OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">
+          List of Drivers
+        </OldSchoolMenuLink>
       </ul>
     </nav>
-  )
+  );
 }
 
 
