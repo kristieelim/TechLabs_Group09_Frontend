@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <img src={icon} className="nav--icon" />
-            <h3 className="tafel">Tafel Route</h3>
+      <h3 className="tafel">Tafel Route</h3>
       {/* <Link  className="site-title">
         Navigation
       </Link> */}
@@ -16,13 +16,18 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/VerifyOTP">Verify</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Stores">List of Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">List of Drivers</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Stores">
+          List of Stores
+        </OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">
+          List of Drivers
+        </OldSchoolMenuLink>
       </ul>
     </nav>
-  )
+  );
 }
 
 
