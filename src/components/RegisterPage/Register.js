@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle,} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
@@ -42,6 +43,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -64,7 +67,6 @@ const Register = () => {
   const [matchPwdFocus, setMatchPwdFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -110,13 +112,12 @@ const Register = () => {
       console.log(response.data);
       console.log(response.accessToken);
       console.log(JSON.stringify(response));
-      setSuccess(true);
       //clear input fields
+
+      navigate("/VerifyOTP");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
-      } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
       } else {
         setErrMsg("Registration Failed");
       }
@@ -125,34 +126,6 @@ const Register = () => {
   };
 
   return (
-    <>
-      {success ? (
-        <section>
-          <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-              <CssBaseline />
-              <Box
-                sx={{
-                  marginTop: 8,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              ></Box>
-              <Typography component="h1" variant="h5">
-                Registration Successful
-              </Typography>
-              <Grid container>
-                <Grid item>
-                  <Link href="/Login" variant="body2">
-                    Sign in
-                  </Link>
-                </Grid>
-              </Grid>
-            </Container>
-          </ThemeProvider>
-        </section>
-      ) : (
         <section>
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
@@ -355,8 +328,6 @@ const Register = () => {
             </Container>
           </ThemeProvider>
         </section>
-      )}
-    </>
   );
 };
 

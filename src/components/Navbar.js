@@ -1,6 +1,8 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import icon from '../images/Tafel_Deutschland_logo.png'
+
 
 export default function Navbar() {
   return (
@@ -14,8 +16,7 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Missing">Missing</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Unauthorized">Unauthorized</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/VerifyOTP">Verify</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">

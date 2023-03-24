@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-//import Link from "@mui/material/Link";
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -11,11 +11,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useRef, useState, useEffect } from "react";
-import useAuth from "../hooks/useAuth";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-
+import { useRef, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "./context/AuthProvider";
 import axios from "./api/axios";
+
 const LOGIN_URL = "/api/auth/login";
 
 function Copyright(props) {
@@ -39,12 +39,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Login = () => {
-  const { setAuth } = useAuth();
-
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
+  const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -54,7 +51,6 @@ const Login = () => {
 
   useEffect(() => {
     userRef.current.focus();
-    //axios.get("/api/user").then(x => console.log(x));
   }, []);
 
   useEffect(() => {
@@ -69,17 +65,30 @@ const Login = () => {
         LOGIN_URL,
         JSON.stringify({ email: email, password: pwd }),
         {
-          headers: { "Content-Type": "application/json" }
+          headers: { "Content-Type": "application/json" },
         }
       );
+
       console.log(JSON.stringify(response?.data));
       //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const type = response?.data?.type;
-      setAuth({ email, pwd, type, accessToken });
+      const token = response?.data?.data?.token;
+      const type = response?.data?.data?.type;
+
+      console.log(token);
+      localStorage.setItem("token", token);
+
+      setAuth({ email, pwd, type, token });
       setEmail("");
       setPwd("");
-      navigate(from, { replace: true });
+
+      if (type === "DRIVER"){
+        navigate("/DriverPage");
+      }else if(type === "EMPLOYEE"){
+        navigate("/StorePage");
+      }else{
+        navigate("/");
+      }
+
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -113,6 +122,7 @@ const Login = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            
             <p
               ref={errRef}
               className={errMsg ? "errmsg" : "offscreen"}
@@ -135,7 +145,6 @@ const Login = () => {
                 ref={userRef}
                 label="Email Address"
                 name="email"
-                //autoComplete="email"
                 autoFocus
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
