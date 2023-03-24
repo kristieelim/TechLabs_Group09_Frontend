@@ -11,6 +11,7 @@ import { ChakraProvider, theme } from '@chakra-ui/react'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { StyledEngineProvider } from '@mui/material/styles';
 
+
 const theme1 = createTheme();
 
 
@@ -19,15 +20,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-    <BrowserRouter>
+  
       <AuthProvider>
-        <ChakraProvider theme={theme}>
+        {/* <ChakraProvider theme={theme}> */}
         <Router>
           <App />
         </Router>
-        </ChakraProvider>
+        {/* </ChakraProvider> */}
       </AuthProvider>
-    </BrowserRouter>
+
     </StyledEngineProvider>
   </React.StrictMode>
 );

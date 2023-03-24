@@ -74,11 +74,11 @@ export default function DriverPage() {
                     ))}
                 </tbody>
             </Table>
-            <ChakraProvider theme={theme}>
+            {/* <ChakraProvider theme={theme}>
                 <div>
-                    {/* <GoogleMap /> */}
+                    <GoogleMap />
                 </div>
-            </ChakraProvider>
+            </ChakraProvider> */}
 
 
 
