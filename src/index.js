@@ -8,19 +8,27 @@ import { BrowserRouter, Route , Routes} from "react-router-dom";
 import 'leaflet/dist/leaflet.css'
 import { AuthProvider } from './context/AuthProvider';
 import { ChakraProvider, theme } from '@chakra-ui/react'
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { StyledEngineProvider } from '@mui/material/styles';
+
+const theme1 = createTheme();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <StyledEngineProvider injectFirst>
     <BrowserRouter>
       <AuthProvider>
-        <ChakraProvider theme={theme}>
+        {/* <ChakraProvider theme={theme}> */}
+        {/* <ThemeProvider theme={theme1} > */}
           <Routes>
             <Route path='/*' element={<App />} />
           </Routes>
-        </ChakraProvider>
+          {/* </ThemeProvider> */}
+        {/* </ChakraProvider> */}
       </AuthProvider>
     </BrowserRouter>
+    </StyledEngineProvider>
   </React.StrictMode>
 );
 

@@ -4,6 +4,10 @@ import data from "./stores-mock-data.json";
 import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
 import Table from 'react-bootstrap/Table';
+import Button from "@mui/material/Button";
+import TextField from '@mui/material/TextField';
+
+
 
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState(data);
@@ -118,35 +122,35 @@ export default function AdminPage_Stores() {
 
     <h2>Add a store</h2>
       <form onSubmit={handleAddFormSubmit}>
-        <input
+        <TextField id="outlined-basic" label="Enter a name" variant="outlined"
           type="text"
           name="fullName"
           required="required"
           placeholder="Enter a name"
           onChange={handleAddFormChange}
         />
-        <input
+        <TextField id="outlined-basic" label="Enter an address" variant="outlined"
           type="text"
           name="address"
           required="required"
           placeholder="Enter an address"
           onChange={handleAddFormChange}
         />
-        <input
+        <TextField id="outlined-basic" label="Enter a phone number" variant="outlined"
           type="text"
           name="phoneNumber"
           required="required"
           placeholder="Enter a phone number"
           onChange={handleAddFormChange}
         />
-        <input
+        <TextField id="outlined-basic" label="Enter an email" variant="outlined"
           type="email"
           name="email"
           required="required"
           placeholder="Enter an email"
           onChange={handleAddFormChange}
         />
-        <button type="submit">Add</button>
+        <Button type="submit" variant="contained" sx={{minWidth: 120, minHeight: 56}}>Add</Button>
       </form>
 
       <form onSubmit={handleEditFormSubmit}>

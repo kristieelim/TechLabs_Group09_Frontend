@@ -167,3 +167,77 @@ padding: 0 1rem;
 }
 
 
+/* h1 {
+  font-size: 70px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+} */
+
+
+h1 {
+  font-size: 70px;
+  font-weight: 600;
+  background-image: url(./images/rockets.png);
+  background-size: 250px;
+  background-repeat: repeat;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 2px 2px 4px rgba(179, 147, 211, 0.1),
+  3px 4px 4px rgba(179, 147, 211, 0.15),
+  4px 6px 4px rgba(179, 147, 211, 0.2),
+  5px 8px 4px rgab(179, 147, 211, 0.25);
+}
+
+
+/* h1 {
+  font-size: 70px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: #b393d3;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0px #957dad,
+               1px 2px 0px #957dad,
+               1px 3px 0px #957dad,
+               1px 4px 0px #957dad,
+               1px 5px 0px #957dad,
+               1px 6px 0px #957dad,
+} */
+
+.image {
+	background-image: url('./images/2.jpg');
+	height: 1410px;
+  background-size:contain;
+
+  
+}
+
+
+
+h1 {
+	padding-top: 50px;
+	color: grey;
+	font-size: 20px;
+	text-align: center;
+}
+
+h2 {
+	padding-top: 20px;
+	color: grey;
+	font-size: 10px;
+	text-align: center;
+}
+
+.maintext{
+	padding-top: 20px;
+  padding-left: 450px;
+	color: black;
+	font-size: 20px;
+	text-align: left;
+  /* text-shadow:  1px 1px  grey; */
+  /* background-color: #555; */
+}
+

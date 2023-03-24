@@ -2,11 +2,12 @@ import React from 'react'
 import Navbar from "./Navbar"
 import Main from "./Main"
 import '../App.css';
+import Card from "./card"
 
 
 export default function DriverPage() {
     return (
-        <div>
+        <div class="image">
             <h1>Home Page</h1>
             <div className="container">
             <div className="maintext">
@@ -21,7 +22,6 @@ export default function DriverPage() {
             
              Together, we can make a meaningful impact on reducing food waste and combating hunger in our community.
             </div>
-            {/* <Main /> */}
             </div>             
         </div>
     )

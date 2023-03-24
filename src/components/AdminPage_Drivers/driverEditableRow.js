@@ -1,4 +1,6 @@
 import React from "react";
+import TextField from '@mui/material/TextField';
+import Button from "@mui/material/Button";
 
 const EditableRow = ({
   editFormData,
@@ -8,40 +10,40 @@ const EditableRow = ({
   return (
     <tr>
       <td>
-        <input
+        <TextField
           type="text"
           required="required"
           placeholder="Enter a name"
           name="fullName"
           value={editFormData.fullName}
           onChange={handleEditFormChange}
-        ></input>
+        ></TextField>
       </td>
       <td>
-        <input
+        <TextField
           type="text"
           required="required"
           placeholder="Enter a phone number"
           name="phoneNumber"
           value={editFormData.phoneNumber}
           onChange={handleEditFormChange}
-        ></input>
+        ></TextField>
       </td>
       <td>
-        <input
+        <TextField
           type="email"
           required="required"
           placeholder="Enter an email address"
           name="email"
           value={editFormData.email}
           onChange={handleEditFormChange}
-        ></input>
+        ></TextField>
       </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
+        <Button type="submit">Save</Button>
+        <Button type="button" onClick={handleCancelClick}>
           Cancel
-        </button>
+        </Button>
       </td>
     </tr>
   );

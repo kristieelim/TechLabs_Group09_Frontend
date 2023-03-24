@@ -46,7 +46,7 @@ class App extends Component {
           />
           */}
 
-          <Route element={<RequireAuth />}>
+          {/* <Route element={<RequireAuth />}> */}
             <Route exact path="/StorePage" element={<StorePage />} />
             <Route exact path="/DriverPage" element={<DriverPage />} />
             <Route
@@ -59,7 +59,7 @@ class App extends Component {
             path="/AdminPage_Drivers"
             element={<AdminPage_Drivers />}
             />
-          </Route>
+          {/* </Route> */}
 
           <Route exact path="/Missing" element={<Missing />} />
           <Route exact path="/Unauthorized" element={<Unauthorized />} />

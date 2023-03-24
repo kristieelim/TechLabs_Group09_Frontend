@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Button from "@mui/material/Button";
 
 const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
     
@@ -31,15 +32,15 @@ const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
         >
           -
         </button> */}
-        <button
-          type="button"
+        <Button
+          type="button" 
           onClick={(event) => handleEditClick(event, food)}
         >
           Edit
-        </button>
-        <button type="button" onClick={() => handleDeleteClick(food.id)}>
+        </Button>
+        <Button type="button"  onClick={() => handleDeleteClick(food.id)}>
           Delete
-        </button>
+        </Button>
       </td>
     </tr>
   );

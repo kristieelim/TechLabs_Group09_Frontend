@@ -1,5 +1,11 @@
 
 import React from "react";
+import Button from "@mui/material/Button";
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import NativeSelect from '@mui/material/NativeSelect';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 const EditableRow = ({
   editFormData,
@@ -9,40 +15,66 @@ const EditableRow = ({
   return (
     <tr>
       <td>
-        <input
+      {/* <TextField id="outlined-basic" label="Enter Food..." variant="outlined"> */}
+        <TextField
           type="text"
           required="required"
           placeholder="Enter Food..."
           name="food"
           value={editFormData.food}
           onChange={handleEditFormChange}
-        ></input>
+        ></TextField>
       </td>
+
       <td>
-        <input
+      
+        <TextField
           type="text"
           required="required"
           placeholder="Enter food quantity..."
           name="foodQuantity"
           value={editFormData.foodQuantity}
           onChange={handleEditFormChange}
-        ></input>
+        />
       </td>
       <td>
-        <input
+        {/* <TextField
           type="text"
           required="required"
           placeholder="Enter unit..."
           name="unit"
           value={editFormData.unit}
           onChange={handleEditFormChange}
-        ></input>
+        ></TextField> */}
+      
+      <FormControl sx={{minWidth: 120}} >
+        <InputLabel htmlFor="demo-customized-select-native">Select Unit</InputLabel>
+        <NativeSelect
+          type="text"
+          name="unit"
+          // value={addFormData}
+          label="Unit"
+          required="required" 
+          onChange={handleEditFormChange} 
+          value={editFormData.unit}
+          // input={<BootstrapInput />}
+          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+        >
+
+          <option aria-label="None" value="" />
+          <option value={"kg"}>kg</option>
+          <option value={"liter"}>liter</option>
+          <option value={"piece"}>piece</option>
+          <option value={"box"}>box</option>
+        </NativeSelect>
+      </FormControl>
+
       </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
+        <Button type="submit"  >Save</Button>
+        <Button type="button"  onClick={handleCancelClick}>
           Cancel
-        </button>
+        </Button>
       </td>
     </tr>
   );

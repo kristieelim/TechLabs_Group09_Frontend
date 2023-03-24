@@ -1,9 +1,31 @@
 import React, {useState, Fragment} from 'react'
 import data from "./appointments-mock-data.json";
 import Table from 'react-bootstrap/Table';
-import GoogleMap from '../GoogleMap2';
+import GoogleMap from '../GoogleMap3';
 // import OpenMaps from '../Openmaps';
 import MyMap from '../MyMap';
+import { ChakraProvider, theme } from '@chakra-ui/react'
+
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { autoBatchEnhancer } from '@reduxjs/toolkit';
+import { AutoAwesome } from '@mui/icons-material';
+
+import { styled } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+
 
 export default function DriverPage() {
 
@@ -11,12 +33,22 @@ export default function DriverPage() {
 
     return (
         <div className="app-container">
-            <h1>Driver Page</h1>
-            <h6>Driver Name: {appointments[0].driverName}</h6>
-            <h6>Collection Date: {appointments[0].collectionDate}</h6>
+        <h1>Driver Page</h1>
+<Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs="auto">
+          <Item>Driver Name: {appointments[0].driverName}</Item>
+        </Grid>
+        <Grid item xs="auto">
+          <Item>Collection Date: {appointments[0].collectionDate}</Item>
+        </Grid>
+      </Grid>
+    </Box>
+
+            
             {/* <MyMap /> */}
             
-            <Table striped bordered hover>
+            <Table striped bordered hover width="auto">
                 <thead>
                     <tr>
                         <th>Store</th>
@@ -42,7 +74,14 @@ export default function DriverPage() {
                     ))}
                 </tbody>
             </Table>
-            <GoogleMap />
+            <ChakraProvider theme={theme}>
+                <div>
+                    {/* <GoogleMap /> */}
+                </div>
+            </ChakraProvider>
+
+
+
         </div>
     )
 }
