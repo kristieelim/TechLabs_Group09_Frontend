@@ -4,23 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter, Route , Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import 'leaflet/dist/leaflet.css'
-import { AuthProvider } from './context/AuthProvider';
+import { AuthProvider } from './components/context/AuthProvider';
 import { ChakraProvider, theme } from '@chakra-ui/react'
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <ChakraProvider theme={theme}>
-          <Routes>
-            <Route path='/*' element={<App />} />
-          </Routes>
-        </ChakraProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <AuthProvider>
+    <ChakraProvider theme={theme}>
+      <Router>
+        <App />
+      </Router>
+    </ChakraProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
