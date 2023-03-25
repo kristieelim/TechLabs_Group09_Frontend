@@ -1,23 +1,38 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import {nanoid} from 'nanoid';
-import data from "./drivers-mock-data.json";
+//import data from "./drivers-mock-data.json";
 import ReadOnlyRow from './driverReadOnlyRow';
 import EditableRow from './driverEditableRow';
 import Table from 'react-bootstrap/Table';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
+import axios from "../api/axios" 
+
+const USER_URL = "/api/user";
 
 export default function AdminPage_Drivers() {
-  const [contacts, setContacts] = useState(data);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(USER_URL)
+      .then((response) => {
+        setContacts(response.data.data.filter((item) => item.type === "DRIVER"));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
+    firstName: "",
+    lastName: "",
     email: "",
   });
 
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
+    firstName: "",
+    lastName: "",
     email: "",
   });
 
@@ -51,9 +66,9 @@ export default function AdminPage_Drivers() {
     event.preventDefault();
 
     const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      phoneNumber: addFormData.phoneNumber,
+      _id: nanoid(),
+      firstName: addFormData.firstName,
+      lastName: addFormData.lastName,
       email: addFormData.email,
     };
 
@@ -65,15 +80,15 @@ export default function AdminPage_Drivers() {
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
-      phoneNumber: editFormData.phoneNumber,
+      _id: editContactId,
+      firstName: editFormData.firstName,
+      lastName: editFormData.lastName,
       email: editFormData.email,
     };
 
     const newContacts = [...contacts];
 
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
+    const index = contacts.findIndex((contact) => contact._id === editContactId);
 
     newContacts[index] = editedContact;
 
@@ -83,11 +98,11 @@ export default function AdminPage_Drivers() {
 
   const handleEditClick = (event, contact) => {
     event.preventDefault();
-    setEditContactId(contact.id);
+    setEditContactId(contact._id);
 
     const formValues = {
-      fullName: contact.fullName,
-      phoneNumber: contact.phoneNumber,
+      firstName: contact.firstName,
+      lastName: contact.lastName,
       email: contact.email,
     };
 
@@ -101,7 +116,7 @@ export default function AdminPage_Drivers() {
   const handleDeleteClick = (contactId) => {
     const newContacts = [...contacts];
 
-    const index = contacts.findIndex((contact) => contact.id === contactId);
+    const index = contacts.findIndex((contact) => contact._id === contactId);
 
     newContacts.splice(index, 1);
 
@@ -110,48 +125,63 @@ export default function AdminPage_Drivers() {
 
   return (
     <div className="app-container">
-    <h1>Admin Page - List of Drivers</h1>
+      <h1>Admin Page - List of Drivers</h1>
 
-    <h2>Add a driver</h2>
+      <h2>Add a driver</h2>
       <form onSubmit={handleAddFormSubmit}>
-        <TextField id="outlined-basic" label="Enter a name" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="First Name"
+          variant="outlined"
           type="text"
-          name="fullName"
+          name="firstName"
           required="required"
-          placeholder="Enter a name"
+          placeholder="First Name"
           onChange={handleAddFormChange}
         />
-        <TextField id="outlined-basic" label="Enter a phone number" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="Last Name"
+          variant="outlined"
           type="text"
-          name="phoneNumber"
+          name="lastName"
           required="required"
-          placeholder="Enter a phone number"
+          placeholder="Last Name"
           onChange={handleAddFormChange}
         />
-        <TextField id="outlined-basic" label="Enter an email address" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
           type="email"
           name="email"
           required="required"
           placeholder="Enter an email address"
           onChange={handleAddFormChange}
         />
-        <Button type="submit" variant="contained" sx={{minWidth: 120, minHeight: 56}}>Add</Button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ minWidth: 120, minHeight: 56 }}
+        >
+          Add
+        </Button>
       </form>
 
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Phone Number</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {contacts.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
+              <Fragment key={contact._id}>
+                {editContactId === contact._id ? (
                   <EditableRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
