@@ -27,13 +27,13 @@ export default function AdminPage_Drivers() {
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    email: ""
   });
 
   const [editFormData, setEditFormData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    email: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -69,7 +69,7 @@ export default function AdminPage_Drivers() {
       _id: nanoid(),
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
-      email: addFormData.email,
+      email: addFormData.email
     };
 
     const newContacts = [...contacts, newContact];
@@ -83,7 +83,7 @@ export default function AdminPage_Drivers() {
       _id: editContactId,
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
-      email: editFormData.email,
+      email: editFormData.email
     };
 
     const newContacts = [...contacts];
@@ -103,7 +103,7 @@ export default function AdminPage_Drivers() {
     const formValues = {
       firstName: contact.firstName,
       lastName: contact.lastName,
-      email: contact.email,
+      email: contact.email
     };
 
     setEditFormData(formValues);

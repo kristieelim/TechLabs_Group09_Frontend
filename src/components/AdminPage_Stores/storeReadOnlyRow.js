@@ -4,9 +4,8 @@ import Button from "@mui/material/Button";
 const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
-      <td>{contact.fullName}</td>
-      <td>{contact.address}</td>
-      <td>{contact.phoneNumber}</td>
+      <td>{contact.firstName}</td>
+      <td>{contact.lastName}</td>
       <td>{contact.email}</td>
       <td>
         <Button
@@ -15,7 +14,7 @@ const ReadOnlyRow = ({ contact, handleEditClick, handleDeleteClick }) => {
         >
           Edit
         </Button>
-        <Button type="button" onClick={() => handleDeleteClick(contact.id)}>
+        <Button type="button" onClick={() => handleDeleteClick(contact._id)}>
           Delete
         </Button>
       </td>

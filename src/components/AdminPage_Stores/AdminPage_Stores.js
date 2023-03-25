@@ -1,28 +1,39 @@
-import React, {useState, Fragment}  from 'react'
+import React, {useState, useEffect, Fragment}  from 'react'
 import {nanoid} from 'nanoid';
-import data from "./stores-mock-data.json";
+//import data from "./stores-mock-data.json";
 import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
 import Table from 'react-bootstrap/Table';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
+import axios from "../api/axios";
 
-
+const USER_URL = "/api/user";
 
 export default function AdminPage_Stores() {
-    const [contacts, setContacts] = useState(data);
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+    axios
+      .get(USER_URL)
+      .then((response) => {
+        setContacts(response.data.data.filter((item) => item.type === "EMPLOYEE"));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
     const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    firstName: "",
+    lastName: "",
+    email: ""
   });
 
   const [editFormData, setEditFormData] = useState({
     fullName: "",
-    address: "",
-    phoneNumber: "",
-    email: "",
+    lastName: "",
+    email: ""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -55,11 +66,10 @@ export default function AdminPage_Stores() {
     event.preventDefault();
 
     const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
-      email: addFormData.email,
+      _id: nanoid(),
+      firstName: addFormData.firstName,
+      lastName: addFormData.lastName,
+      email: addFormData.email
     };
 
     //add data to database
@@ -71,16 +81,15 @@ export default function AdminPage_Stores() {
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
-      email: editFormData.email,
+      _id: editContactId,
+      firstName: editFormData.firstName,
+      lastName: editFormData.lastName,
+      email: editFormData.email
     };
 
     const newContacts = [...contacts];
 
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
+    const index = contacts.findIndex((contact) => contact._id === editContactId);
 
     newContacts[index] = editedContact;
 
@@ -90,13 +99,12 @@ export default function AdminPage_Stores() {
 
   const handleEditClick = (event, contact) => {
     event.preventDefault();
-    setEditContactId(contact.id);
+    setEditContactId(contact._id);
 
     const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
-      phoneNumber: contact.phoneNumber,
-      email: contact.email,
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      email: contact.email
     };
 
     setEditFormData(formValues);
@@ -109,7 +117,7 @@ export default function AdminPage_Stores() {
   const handleDeleteClick = (contactId) => {
     const newContacts = [...contacts];
 
-    const index = contacts.findIndex((contact) => contact.id === contactId);
+    const index = contacts.findIndex((contact) => contact._id === contactId);
 
     newContacts.splice(index, 1);
 
@@ -118,48 +126,55 @@ export default function AdminPage_Stores() {
 
   return (
     <div className="app-container">
-    <h1>Admin Page - List of Stores</h1>
+      <h1>Admin Page - List of Stores</h1>
 
-    <h2>Add a store</h2>
+      <h2>Add a store</h2>
       <form onSubmit={handleAddFormSubmit}>
-        <TextField id="outlined-basic" label="Enter a name" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="First Name"
+          variant="outlined"
           type="text"
-          name="fullName"
+          name="firstName"
           required="required"
-          placeholder="Enter a name"
+          placeholder="First Name"
           onChange={handleAddFormChange}
         />
-        <TextField id="outlined-basic" label="Enter an address" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="Last Name"
+          variant="outlined"
           type="text"
-          name="address"
+          name="lastName"
           required="required"
-          placeholder="Enter an address"
+          placeholder="Last Name"
           onChange={handleAddFormChange}
         />
-        <TextField id="outlined-basic" label="Enter a phone number" variant="outlined"
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number"
-          onChange={handleAddFormChange}
-        />
-        <TextField id="outlined-basic" label="Enter an email" variant="outlined"
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
           type="email"
           name="email"
           required="required"
-          placeholder="Enter an email"
+          placeholder="Email"
           onChange={handleAddFormChange}
         />
-        <Button type="submit" variant="contained" sx={{minWidth: 120, minHeight: 56}}>Add</Button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ minWidth: 120, minHeight: 56 }}
+        >
+          Add
+        </Button>
       </form>
 
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Email</th>
               <th>Actions</th>
             </tr>
@@ -167,7 +182,7 @@ export default function AdminPage_Stores() {
           <tbody>
             {contacts.map((contact) => (
               <Fragment>
-                {editContactId === contact.id ? (
+                {editContactId === contact._id ? (
                   <EditableRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
