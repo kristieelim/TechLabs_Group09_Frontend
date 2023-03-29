@@ -9,6 +9,7 @@ import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import Register from "./components/RegisterPage/Register";
 import VerifyOTP from "./components/VerifyOTP";
+import Logout from "./components/Logout";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 
@@ -20,6 +21,7 @@ class App extends Component {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/Login" element={<Login />} />
+          <Route exact path="/Logout" element={<Logout />} />
           <Route exact path="/Register" element={<Register />} />
           <Route exact path="/VerifyOTP" element={<VerifyOTP />} />
           <Route exact path="/StorePage" element={<StorePage />} />

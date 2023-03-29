@@ -17,6 +17,7 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/VerifyOTP">Verify</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/Logout">Sign out</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">
