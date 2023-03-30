@@ -30,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DriverPage() {
   const token = localStorage.getItem("token");
   var decoded = jwt_decode(token);
-
+  
   const [user, setUser] = useState(decoded);
   const [appointments, setAppointments] = useState(data);
 
