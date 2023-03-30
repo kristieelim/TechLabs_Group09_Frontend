@@ -1,10 +1,34 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { useState, useEffect } from "react" 
+import { Link, useNavigate, useMatch, useResolvedPath } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
+import jwt_decode from "jwt-decode";
+//import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import icon from '../images/Tafel_Deutschland_logo.png'
 
-
 export default function Navbar() {
+  const [isDriver, setIsDriver] = useState(false);
+  const [isEmployee, setIsEmployee] = useState(false);
+  const [user, setUser] = useState(null);
+  const token = localStorage.getItem("token");
+  const history = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      const decoded = jwt_decode(token);
+      setUser(decoded);
+      setIsDriver(decoded && decoded.type === "DRIVER");
+      setIsEmployee(decoded && decoded.type === "EMPLOYEE");
+    }
+  }, [token]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    setIsDriver(false);
+    setIsEmployee(false);
+    history.push("/Login");
+  };
+
   return (
     <nav className="navbar">
       <img src={icon} className="nav--icon" />
@@ -12,20 +36,27 @@ export default function Navbar() {
       {/* <Link  className="site-title">
         Navigation
       </Link> */}
+      
       <ul>
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/VerifyOTP">Verify</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/Logout">Sign out</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
+        {!user && <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>}
+        {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
+        {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
+        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
+
+        {/*Admin pages still need authorization*/}
         <OldSchoolMenuLink to="/AdminPage_Stores">
           List of Stores
         </OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Drivers">
           List of Drivers
         </OldSchoolMenuLink>
+
+        {user && (
+          <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
+            Sign out
+          </OldSchoolMenuLink>
+        )}
       </ul>
     </nav>
   );
