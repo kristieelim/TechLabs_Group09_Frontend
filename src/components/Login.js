@@ -69,12 +69,8 @@ const Login = () => {
         }
       );
 
-      //console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
       const token = response?.data?.data?.token;
       const type = response?.data?.data?.type;
-
-      //console.log(token);
       localStorage.setItem("token", token);
 
       setAuth({ email, pwd, type, token });

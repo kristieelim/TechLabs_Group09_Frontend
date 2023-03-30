@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import {nanoid} from 'nanoid';
+//import {nanoid} from 'nanoid';
 //import data from "./drivers-mock-data.json";
 import ReadOnlyRow from './driverReadOnlyRow';
 import EditableRow from './driverEditableRow';
@@ -12,6 +12,7 @@ const USER_URL = "/api/user";
 
 export default function AdminPage_Drivers() {
   const [contacts, setContacts] = useState([]);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     axios
@@ -27,7 +28,8 @@ export default function AdminPage_Drivers() {
   const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
+    password:""
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -66,14 +68,28 @@ export default function AdminPage_Drivers() {
     event.preventDefault();
 
     const newContact = {
-      _id: nanoid(),
+      email: addFormData.email,
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
-      email: addFormData.email
+      type: "DRIVER",
+      password: addFormData.password
     };
 
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+    axios.post(USER_URL, newContact)
+    .then((response) => {
+      const addedContact = response.data.data;
+      setContacts([...contacts, addedContact]);
+      setAddFormData({ firstName: "", lastName: "", email: "", password: "" });
+      setMessage({ type: "success", text: "New driver added successfully." });
+
+      // Hide the success message after 3 seconds
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   const handleEditFormSubmit = (event) => {
@@ -128,6 +144,13 @@ export default function AdminPage_Drivers() {
       <h1>Admin Page - List of Drivers</h1>
 
       <h2>Add a driver</h2>
+
+      {message && (
+        <div className={`alert alert-${message.type}`} role="alert">
+          {message.text}
+        </div>
+      )}
+
       <form onSubmit={handleAddFormSubmit}>
         <TextField
           id="outlined-basic"
@@ -156,7 +179,17 @@ export default function AdminPage_Drivers() {
           type="email"
           name="email"
           required="required"
-          placeholder="Enter an email address"
+          placeholder="Email"
+          onChange={handleAddFormChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="string"
+          name="password"
+          required="required"
+          placeholder="Password"
           onChange={handleAddFormChange}
         />
         <Button

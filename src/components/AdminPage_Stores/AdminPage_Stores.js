@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment}  from 'react'
-import {nanoid} from 'nanoid';
+//import {nanoid} from 'nanoid';
 //import data from "./stores-mock-data.json";
 import ReadOnlyRow from './storeReadOnlyRow';
 import EditableRow from './storeEditableRow';
@@ -12,6 +12,7 @@ const USER_URL = "/api/user";
 
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState([]);
+    const [message, setMessage] = useState(null);
 
     useEffect(() => {
     axios
@@ -27,7 +28,8 @@ export default function AdminPage_Stores() {
     const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
+    password: ""
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -66,15 +68,34 @@ export default function AdminPage_Stores() {
     event.preventDefault();
 
     const newContact = {
-      _id: nanoid(),
+      email: addFormData.email,
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
-      email: addFormData.email
+      type: "EMPLOYEE",
+      password: addFormData.password
     };
 
-    //add data to database
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+    axios
+      .post(USER_URL, newContact)
+      .then((response) => {
+        const addedContact = response.data.data;
+        setContacts([...contacts, addedContact]);
+        setAddFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+        });
+        setMessage({ type: "success", text: "New store employee added successfully." });
+
+        // Hide the success message after 3 seconds
+        setTimeout(() => {
+          setMessage(null);
+        }, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleEditFormSubmit = (event) => {
@@ -128,7 +149,14 @@ export default function AdminPage_Stores() {
     <div className="app-container">
       <h1>Admin Page - List of Stores</h1>
 
-      <h2>Add a store</h2>
+      <h2>Add a store employee</h2>
+
+      {message && (
+        <div className={`alert alert-${message.type}`} role="alert">
+          {message.text}
+        </div>
+      )}
+
       <form onSubmit={handleAddFormSubmit}>
         <TextField
           id="outlined-basic"
@@ -158,6 +186,16 @@ export default function AdminPage_Stores() {
           name="email"
           required="required"
           placeholder="Email"
+          onChange={handleAddFormChange}
+        />
+        <TextField
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="string"
+          name="password"
+          required="required"
+          placeholder="Password"
           onChange={handleAddFormChange}
         />
         <Button
