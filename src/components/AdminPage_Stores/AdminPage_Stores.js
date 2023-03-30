@@ -147,7 +147,7 @@ export default function AdminPage_Stores() {
 
   return (
     <div className="app-container">
-      <h1>Admin Page - List of Stores</h1>
+      <h1>List of Store Employees</h1>
 
       <h2>Add a store employee</h2>
 

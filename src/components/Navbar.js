@@ -8,6 +8,8 @@ import icon from '../images/Tafel_Deutschland_logo.png'
 export default function Navbar() {
   const [isDriver, setIsDriver] = useState(false);
   const [isEmployee, setIsEmployee] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
   const history = useNavigate();
@@ -18,6 +20,7 @@ export default function Navbar() {
       setUser(decoded);
       setIsDriver(decoded && decoded.type === "DRIVER");
       setIsEmployee(decoded && decoded.type === "EMPLOYEE");
+      setIsAdmin(decoded && decoded.type === "ADMIN");
     }
   }, [token]);
 
@@ -26,6 +29,7 @@ export default function Navbar() {
     setUser(null);
     setIsDriver(false);
     setIsEmployee(false);
+    setIsAdmin(false);
     history.push("/Login");
   };
 
@@ -43,15 +47,12 @@ export default function Navbar() {
         {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
         {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
-
-        {/*Admin pages still need authorization*/}
-        <OldSchoolMenuLink to="/AdminPage_Stores">
-          List of Stores
-        </OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">
-          List of Drivers
-        </OldSchoolMenuLink>
-
+        {isAdmin && <OldSchoolMenuLink to="/AdminPage_Stores">
+          Stores
+        </OldSchoolMenuLink>}
+        {isAdmin && <OldSchoolMenuLink to="/AdminPage_Drivers">
+          Drivers
+        </OldSchoolMenuLink>}
         {user && (
           <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
             Sign out

@@ -141,7 +141,7 @@ export default function AdminPage_Drivers() {
 
   return (
     <div className="app-container">
-      <h1>Admin Page - List of Drivers</h1>
+      <h1>List of Drivers</h1>
 
       <h2>Add a driver</h2>
 

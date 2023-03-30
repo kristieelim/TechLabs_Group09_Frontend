@@ -81,7 +81,9 @@ const Login = () => {
         navigate("/DriverPage");
       }else if(type === "EMPLOYEE"){
         navigate("/StorePage");
-      }else{
+      }else if(type === "ADMIN"){
+        navigate("/AdminPage_Stores");
+      }else {
         navigate("/");
       }
 
