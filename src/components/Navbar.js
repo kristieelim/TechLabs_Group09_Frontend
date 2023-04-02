@@ -18,10 +18,9 @@ export default function Navbar() {
     if (token) {
       const decoded = jwt_decode(token);
       setUser(decoded);
-      //setIsDriver(decoded && decoded.type === "DRIVER");
+      setIsDriver(decoded && decoded.type === "DRIVER");
       setIsEmployee(decoded && decoded.type === "EMPLOYEE");
-      //setIsAdmin(decoded && decoded.type === "ADMIN");
-      setIsAdmin(decoded && decoded.type === "DRIVER");
+      setIsAdmin(decoded && decoded.type === "ADMIN");
     }
   }, [token]);
 
@@ -47,8 +46,7 @@ export default function Navbar() {
         {!user && <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>}
         {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
-        {/*{isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}*/}
-        <CustomLink to="/DriverPage">Driver Page</CustomLink>
+        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
         {isAdmin && <OldSchoolMenuLink to="/AdminPage_Stores">
           Stores
         </OldSchoolMenuLink>}

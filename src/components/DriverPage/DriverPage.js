@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import data from "./appointments-mock-data.json";
 import Table from "react-bootstrap/Table";
 import GoogleMap from "./GoogleMap2";
@@ -11,7 +12,13 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { AutoAwesome } from "@mui/icons-material";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { autoBatchEnhancer } from "@reduxjs/toolkit";
+import { AutoAwesome } from "@mui/icons-material";
 
+import { styled } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 // import Box from '@mui/material/Box';
 import Paper from "@mui/material/Paper";
@@ -19,11 +26,11 @@ import Grid from "@mui/material/Grid";
 import points_of_interest from "./points_of_interest.json";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  //backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",
-  //textAlign: "center",
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
