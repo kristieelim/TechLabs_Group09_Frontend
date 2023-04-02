@@ -70,7 +70,8 @@ const Login = () => {
       );
 
       const token = response?.data?.data?.token;
-      const type = response?.data?.data?.type;
+      const type = "ADMIN";
+      //const type = response?.data?.data?.type;
       localStorage.setItem("token", token);
 
       setAuth({ email, pwd, type, token });
