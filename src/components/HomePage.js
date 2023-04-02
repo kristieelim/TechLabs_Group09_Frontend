@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from "./Navbar"
 import Main from "./Main"
 import '../App.css';
-import Card from "./card"
 
 
 export default function DriverPage() {
