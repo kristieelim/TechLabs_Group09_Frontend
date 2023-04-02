@@ -40,19 +40,20 @@ export default function Navbar() {
       {/* <Link  className="site-title">
         Navigation
       </Link> */}
-      
+
       <ul>
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         {!user && <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>}
         {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
-        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
-        {isAdmin && <OldSchoolMenuLink to="/AdminPage_Stores">
-          Stores
-        </OldSchoolMenuLink>}
-        {isAdmin && <OldSchoolMenuLink to="/AdminPage_Drivers">
-          Drivers
-        </OldSchoolMenuLink>}
+        {/* {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>} */}
+        <CustomLink to="/DriverPage">Driver Page</CustomLink>
+        {isAdmin && (
+          <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
+        )}
+        {isAdmin && (
+          <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+        )}
         {user && (
           <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
             Sign out
