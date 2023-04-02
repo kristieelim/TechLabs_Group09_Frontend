@@ -1,6 +1,8 @@
 import React, {useState, Fragment} from 'react';
 import {nanoid} from 'nanoid';
 import data from "./food-data.json";
+import jwt_decode from "jwt-decode";
+
 import ReadOnlyRow from './foodReadOnlyRow';
 import EditableRow from './FoodEditable';
 import Table from 'react-bootstrap/Table';
@@ -52,13 +54,13 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-
-
-
 const theme = createTheme();
 
-
 export default function StorePage() {
+  const token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
+
+  const [user, setUser] = useState(decoded);
   const [foods, setfoods] = useState(data);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -167,11 +169,12 @@ export default function StorePage() {
   return (
     <section>
       <ThemeProvider theme={theme}>
-    <div className="app-container">
-      <h1>Store Page</h1>
+        <div className="app-container">
+          <h1>Store Page</h1>
+          <h2>Employee Name: {user.firstName + " " + user.lastName}</h2>
 
-      <h2>Select Date and Time</h2>
-      {/* <div style={{ display: "inline-block" }}>
+          <h2>Select Date and Time</h2>
+          {/* <div style={{ display: "inline-block" }}>
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
@@ -179,9 +182,9 @@ export default function StorePage() {
           minDate={new Date()}
         />
       </div> */}
-      <DatePicker1 />
+          <DatePicker1 />
 
-{/* 
+          {/* 
       <div style={{ display: "inline-block", marginLeft: "10px" }}>
         <input
           type="time"
@@ -191,30 +194,32 @@ export default function StorePage() {
         />
       </div> */}
 
-      <h2>Add Food</h2>
-      <form onSubmit={handleAddFormSubmit}>
-     
-        <TextField id="outlined-basic" label="Enter Food" variant="outlined"
-          type="text"
-          name="food"
-          required="required"
-          placeholder="Enter Food Name"
-          onChange={handleAddFormChange}
-        />
-      
-      
-        <TextField id="outlined-basic" label="Enter Food Amount" variant="outlined"
-      
-          type="text"
-          name="foodQuantity"
-          required="required"
-          placeholder="Enter Food Quantity"
-          pattern="\d+(\.\d{1,2})?"
-          onChange={handleAddFormChange}
-        />
-        
+          <h2>Add Food</h2>
+          <form onSubmit={handleAddFormSubmit}>
+            <TextField
+              id="outlined-basic"
+              label="Enter Food"
+              variant="outlined"
+              type="text"
+              name="food"
+              required="required"
+              placeholder="Enter Food Name"
+              onChange={handleAddFormChange}
+            />
 
-        {/* <input
+            <TextField
+              id="outlined-basic"
+              label="Enter Food Amount"
+              variant="outlined"
+              type="text"
+              name="foodQuantity"
+              required="required"
+              placeholder="Enter Food Quantity"
+              pattern="\d+(\.\d{1,2})?"
+              onChange={handleAddFormChange}
+            />
+
+            {/* <input
           type="text"
           name="unit"
           required="required"
@@ -222,7 +227,7 @@ export default function StorePage() {
           onChange={handleAddFormChange}
         /> */}
 
-        {/* <select type="text"
+            {/* <select type="text"
           name="unit"
           required="required" onChange={handleAddFormChange}> 
           <option value="-">Select Unit</option>
@@ -232,7 +237,7 @@ export default function StorePage() {
           <option value="box">box</option>
         </select> */}
 
-      {/* <FormControl  >
+            {/* <FormControl  >
         <InputLabel id="demo-simple-select-label">Select Unit</InputLabel>
         <Select sx={{minWidth: 120 }}
           type="text"
@@ -249,64 +254,70 @@ export default function StorePage() {
         </Select>
       </FormControl> */}
 
-      <FormControl sx={{minWidth: 120}} >
-        <InputLabel htmlFor="demo-customized-select-native">Select Unit</InputLabel>
-        <NativeSelect
-          type="text"
-          name="unit"
-          // value={addFormData}
-          label="Unit"
-          required="required" 
-          onChange={handleAddFormChange} 
-          // input={<BootstrapInput />}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-        >
+            <FormControl sx={{ minWidth: 120 }}>
+              <InputLabel htmlFor="demo-customized-select-native">
+                Select Unit
+              </InputLabel>
+              <NativeSelect
+                type="text"
+                name="unit"
+                // value={addFormData}
+                label="Unit"
+                required="required"
+                onChange={handleAddFormChange}
+                // input={<BootstrapInput />}
+                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+              >
+                <option aria-label="None" value="" />
+                <option value={"kg"}>kg</option>
+                <option value={"liter"}>liter</option>
+                <option value={"piece"}>piece</option>
+                <option value={"box"}>box</option>
+              </NativeSelect>
+            </FormControl>
 
-          <option aria-label="None" value="" />
-          <option value={"kg"}>kg</option>
-          <option value={"liter"}>liter</option>
-          <option value={"piece"}>piece</option>
-          <option value={"box"}>box</option>
-        </NativeSelect>
-      </FormControl>
-    
-       
-        <Button type="submit" variant="contained" sx={{minWidth: 120, minHeight: 56}}>Add</Button>
-      </form>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ minWidth: 120, minHeight: 56 }}
+            >
+              Add
+            </Button>
+          </form>
 
-      <form onSubmit={handleEditFormSubmit}>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Unit</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foods.map((food) => (
-              <Fragment>
-                {editfoodId === food.id ? (
-                  <EditableRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadOnlyRow
-                    food={food}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </Table>
-      </form>
-    </div>
-    </ThemeProvider>
+          <form onSubmit={handleEditFormSubmit}>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Unit</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {foods.map((food) => (
+                  <Fragment>
+                    {editfoodId === food.id ? (
+                      <EditableRow
+                        editFormData={editFormData}
+                        handleEditFormChange={handleEditFormChange}
+                        handleCancelClick={handleCancelClick}
+                      />
+                    ) : (
+                      <ReadOnlyRow
+                        food={food}
+                        handleEditClick={handleEditClick}
+                        handleDeleteClick={handleDeleteClick}
+                      />
+                    )}
+                  </Fragment>
+                ))}
+              </tbody>
+            </Table>
+          </form>
+        </div>
+      </ThemeProvider>
     </section>
   );
 }

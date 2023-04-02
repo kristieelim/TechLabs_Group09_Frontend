@@ -13,9 +13,9 @@ const EditableRow = ({
         <TextField
           type="text"
           required="required"
-          placeholder="Enter a name"
-          name="fullName"
-          value={editFormData.fullName}
+          placeholder="First Name"
+          name="firstName"
+          value={editFormData.firstName}
           onChange={handleEditFormChange}
         ></TextField>
       </td>
@@ -23,19 +23,9 @@ const EditableRow = ({
         <TextField
           type="text"
           required="required"
-          placeholder="Enter an address"
-          name="address"
-          value={editFormData.address}
-          onChange={handleEditFormChange}
-        ></TextField>
-      </td>
-      <td>
-        <TextField
-          type="text"
-          required="required"
-          placeholder="Enter a phone number"
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
+          placeholder="Last Name"
+          name="lastName"
+          value={editFormData.lastName}
           onChange={handleEditFormChange}
         ></TextField>
       </td>
@@ -43,7 +33,7 @@ const EditableRow = ({
         <TextField
           type="email"
           required="required"
-          placeholder="Enter an email address"
+          placeholder="Email"
           name="email"
           value={editFormData.email}
           onChange={handleEditFormChange}
