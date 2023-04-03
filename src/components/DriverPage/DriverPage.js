@@ -6,8 +6,8 @@ import GoogleMap from "./GoogleMap2";
 import MyMap from "../Archiv/MyMap";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { AutoAwesome } from "@mui/icons-material";
