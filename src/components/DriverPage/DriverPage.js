@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import React, { useState, Fragment } from "react";
 import data from "./appointments-mock-data.json";
 import Table from "react-bootstrap/Table";
 import GoogleMap from "./GoogleMap2";
@@ -7,18 +6,12 @@ import GoogleMap from "./GoogleMap2";
 import MyMap from "../Archiv/MyMap";
 import { ChakraProvider, theme } from "@chakra-ui/react";
 
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import { autoBatchEnhancer } from "@reduxjs/toolkit";
-import { AutoAwesome } from "@mui/icons-material";
 import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { AutoAwesome } from "@mui/icons-material";
 
-import { styled } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 // import Box from '@mui/material/Box';
 import Paper from "@mui/material/Paper";
