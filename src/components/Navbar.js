@@ -59,7 +59,7 @@ export default function Navbar() {
         */}
 
         {/* Without Authorization*/}
-        <CustomLink to="/StorePage">Store Page</CustomLink>
+        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
