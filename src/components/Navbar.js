@@ -45,15 +45,25 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
         {!user && <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>}
         {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
+
+        {/*
+        //With Authorization
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
-        {/* {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>} */}
-        <CustomLink to="/DriverPage">Driver Page</CustomLink>
+        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
         )}
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
         )}
+        */}
+
+        {/* Without Authorization*/}
+        <CustomLink to="/StorePage">Store Page</CustomLink>
+        <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+
         {user && (
           <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
             Sign out
