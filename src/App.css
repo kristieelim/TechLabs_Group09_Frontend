@@ -51,14 +51,16 @@ padding: 0 1rem;
 
 }
 
-
-.navbar ul {
+/* ul {
   padding: 0;
   margin: 0;
   list-style: none;
   display: flex;
   gap: 1rem;
-}
+  text-align: center;
+} */
+
+
 
 .navbar a {
   color: inherit;

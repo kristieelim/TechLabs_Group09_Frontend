@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react" 
 import { Link, useNavigate, useMatch, useResolvedPath } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Toolbar from '@mui/material/Toolbar';
 import jwt_decode from "jwt-decode";
 //import { BrowserRouter as Router, Route , Routes} from "react-router-dom";
 import icon from '../images/Tafel_Deutschland_logo.png'
+import HomeIcon from '@mui/icons-material/Home';
+import IconButton from '@mui/material/IconButton';
 
 export default function Navbar() {
   const [isDriver, setIsDriver] = useState(false);
@@ -34,20 +38,29 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      {/* <nav className="navbar"> */}
       <img src={icon} className="nav--icon" />
       <h3 className="tafel">Tafel Route</h3>
-      {/* <Link  className="site-title">
-        Navigation
-      </Link> */}
 
-      <ul>
-        <OldSchoolMenuLink to="/">Home</OldSchoolMenuLink>
-        {!user && <OldSchoolMenuLink to="/Login">Sign in</OldSchoolMenuLink>}
-        {!user && <OldSchoolMenuLink to="/Register">Sign up</OldSchoolMenuLink>}
+      <OldSchoolMenuLink to="/">
+        <IconButton>
+          <HomeIcon fontSize="medium" variant="outlined"/>
+        </IconButton>
+      </OldSchoolMenuLink>
+        {!user && <OldSchoolMenuLink to="/Login">
+          <Button variant="outlined" size="small">
+          Sign in
+          </Button>
+          </OldSchoolMenuLink>}
+        {!user && <OldSchoolMenuLink to="/Register">
+          <Button variant="outlined" size="small">
+          Sign up
+          </Button>
+          </OldSchoolMenuLink>}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
         {/* {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>} */}
-        <CustomLink to="/DriverPage">Driver Page</CustomLink>
+      <CustomLink to="/DriverPage">Driver Page</CustomLink>
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
         )}
@@ -55,12 +68,14 @@ export default function Navbar() {
           <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
         )}
         {user && (
-          <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
-            Sign out
-          </OldSchoolMenuLink>
+      <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
+        Sign out
+      </OldSchoolMenuLink>
         )}
-      </ul>
-    </nav>
+      
+      {/* </nav> */}
+    </Toolbar>
+    
   );
 }
 
@@ -70,7 +85,8 @@ function OldSchoolMenuLink({ children, to }) {
     const match = location.pathname === to;
   
     return (
-      <li className={match ? "active" : ""}>
+      <li className={match ? "active" : ""} y
+      style={{listStyle: "none"}}>
         {match ? " " : ""}
         <Link to={to}>{children}</Link>
       </li>
@@ -83,7 +99,7 @@ function CustomLink({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
   return (
-    <li className={isActive ? "active" : ""}>
+    <li className={isActive ? "active" : ""} style={{listStyle: "none"}}>
       <Link to={to} {...props}>
         {children}
       </Link>

@@ -8,7 +8,7 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
+import { Container } from '@chakra-ui/react'
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { AutoAwesome } from "@mui/icons-material";
 
@@ -74,11 +74,15 @@ export default function DriverPage() {
           ))}
         </tbody>
       </Table>
+      
       <ChakraProvider theme={theme}>
+      <Container maxW='md'>
         <div>
           <GoogleMap points_of_interest={points_of_interest} />
         </div>
+      </Container>
       </ChakraProvider>
+     
     </div>
   );
 }
