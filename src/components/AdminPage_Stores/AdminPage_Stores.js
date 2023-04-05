@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import axios from "../api/axios";
 
-const USER_URL = "/api/user";
+const USER_URL = "/api/user/";
 
 export default function AdminPage_Stores() {
     const [contacts, setContacts] = useState([]);
@@ -18,7 +18,11 @@ export default function AdminPage_Stores() {
     axios
       .get(USER_URL)
       .then((response) => {
-        setContacts(response.data.data.filter((item) => item.type === "EMPLOYEE"));
+        setContacts(
+          response.data.data.filter(
+            (item) => item.type === "EMPLOYEE" && item.isConfirmed === true
+          )
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -108,11 +112,26 @@ export default function AdminPage_Stores() {
       email: editFormData.email
     };
 
-    const newContacts = [...contacts];
+    //Without axios, frontend only
+    //const newContacts = [...contacts];
+    //const index = contacts.findIndex((contact) => contact._id === editContactId);
+    //newContacts[index] = editedContact;
 
-    const index = contacts.findIndex((contact) => contact._id === editContactId);
+    let newContacts = [...contacts];
 
-    newContacts[index] = editedContact;
+    axios
+      .put(USER_URL + editedContact._id, editedContact, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        const updatedContact = response.data.data;
+
+        newContacts = contacts.map((contact) =>
+          contact._id === updatedContact._id ? updatedContact : contact
+        );
+      });
 
     setContacts(newContacts);
     setEditContactId(null);
@@ -136,13 +155,23 @@ export default function AdminPage_Stores() {
   };
 
   const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
+    //Frontend only, no axios
+    //const newContacts = [...contacts];
+    //const index = contacts.findIndex((contact) => contact._id === contactId);
+    //newContacts.splice(index, 1);
+    //setContacts(newContacts);
 
-    const index = contacts.findIndex((contact) => contact._id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
+    axios
+      .delete(USER_URL + contactId)
+      .then(() => {
+        const newContacts = contacts.filter(
+          (contact) => contact._id !== contactId
+        );
+        setContacts(newContacts);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -228,9 +257,10 @@ export default function AdminPage_Stores() {
                   />
                 ) : (
                   <ReadOnlyRow
+                    key={contact._id}
                     contact={contact}
                     handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
+                    handleDeleteClick={() => handleDeleteClick(contact._id)}
                   />
                 )}
               </Fragment>
