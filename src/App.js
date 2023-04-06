@@ -17,30 +17,30 @@ import Container from '@mui/material/Container';
 class App extends Component {
   render() {
     return (
-      // <div className="App">
-      <Container maxWidth="lg">
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/Login" element={<Login />} />
-          <Route exact path="/Logout" element={<Logout />} />
-          <Route exact path="/Register" element={<Register />} />
-          <Route exact path="/VerifyOTP" element={<VerifyOTP />} />
-          <Route exact path="/StorePage" element={<StorePage />} />
-          <Route exact path="/DriverPage" element={<DriverPage />} />
-          <Route
-            exact
-            path="/AdminPage_Stores"
-            element={<AdminPage_Stores />}
-          />
-          <Route
-            exact
-            path="/AdminPage_Drivers"
-            element={<AdminPage_Drivers />}
-          />
-        </Routes>
-      </Container>
-      // {/* </div> */}
+      <div className="App">
+          <Navbar />
+          <Container maxWidth="lg">
+          <Routes>
+            <Route exact path="/" element={<HomePage />} />
+            <Route exact path="/Login" element={<Login />} />
+            <Route exact path="/Logout" element={<Logout />} />
+            <Route exact path="/Register" element={<Register />} />
+            <Route exact path="/VerifyOTP" element={<VerifyOTP />} />
+            <Route exact path="/StorePage" element={<StorePage />} />
+            <Route exact path="/DriverPage" element={<DriverPage />} />
+            <Route
+              exact
+              path="/AdminPage_Stores"
+              element={<AdminPage_Stores />}
+            />
+            <Route
+              exact
+              path="/AdminPage_Drivers"
+              element={<AdminPage_Drivers />}
+            />
+          </Routes>
+          </Container>
+      </div>
     );
   }
 }

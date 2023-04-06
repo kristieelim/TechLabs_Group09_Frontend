@@ -57,10 +57,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 const theme = createTheme();
 
 export default function StorePage() {
-  const token = localStorage.getItem("token");
-  var decoded = jwt_decode(token);
+  //Code for authorization:
+  //const token = localStorage.getItem("token");
+  //var decoded = jwt_decode(token);
+  //const [user, setUser] = useState(decoded);
 
-  const [user, setUser] = useState(decoded);
+  const [user, setUser] = useState(data);
   const [foods, setfoods] = useState(data);
   const [selectedDate, setSelectedDate] = useState(null);
 

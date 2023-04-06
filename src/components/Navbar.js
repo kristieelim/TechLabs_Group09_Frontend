@@ -59,14 +59,21 @@ export default function Navbar() {
           </Button>
           </OldSchoolMenuLink>}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
-        {/* {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>} */}
-      <CustomLink to="/DriverPage">Driver Page</CustomLink>
+        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
         )}
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
         )}
+        */}
+
+        {/* Without Authorization*/}
+        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+
         {user && (
       <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
         Sign out
