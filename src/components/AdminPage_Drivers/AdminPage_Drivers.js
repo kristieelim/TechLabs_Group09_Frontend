@@ -1,12 +1,12 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from "react";
 //import {nanoid} from 'nanoid';
 //import data from "./drivers-mock-data.json";
-import ReadOnlyRow from './driverReadOnlyRow';
-import EditableRow from './driverEditableRow';
-import Table from 'react-bootstrap/Table';
+import ReadOnlyRow from "./driverReadOnlyRow";
+import EditableRow from "./driverEditableRow";
+import Table from "react-bootstrap/Table";
 import Button from "@mui/material/Button";
-import TextField from '@mui/material/TextField';
-import axios from "../api/axios" 
+import TextField from "@mui/material/TextField";
+import axios from "../api/axios";
 
 const USER_URL = "/api/user/";
 
@@ -18,7 +18,17 @@ export default function AdminPage_Drivers() {
     axios
       .get(USER_URL)
       .then((response) => {
-        setContacts(response.data.data.filter((item) => item.type === "DRIVER" && item.isConfirmed === true));
+        setContacts(
+          response.data.data.filter(
+            (item) =>
+              item.type === "DRIVER" &&
+              item.isConfirmed === true &&
+              //just for some cosmetics
+              item.email !== null &&
+              item.firstName !== "Seb" &&
+              item.firstName !== "Driver1"
+          )
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -29,13 +39,13 @@ export default function AdminPage_Drivers() {
     firstName: "",
     lastName: "",
     email: "",
-    password:""
+    password: "",
   });
 
   const [editFormData, setEditFormData] = useState({
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -72,24 +82,30 @@ export default function AdminPage_Drivers() {
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
       type: "DRIVER",
-      password: addFormData.password
+      password: addFormData.password,
     };
 
-    axios.post(USER_URL, newContact)
-    .then((response) => {
-      const addedContact = response.data.data;
-      setContacts([...contacts, addedContact]);
-      setAddFormData({ firstName: "", lastName: "", email: "", password: "" });
-      setMessage({ type: "success", text: "New driver added successfully." });
+    axios
+      .post(USER_URL, newContact)
+      .then((response) => {
+        const addedContact = response.data.data;
+        setContacts([...contacts, addedContact]);
+        setAddFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+        });
+        setMessage({ type: "success", text: "New driver added successfully." });
 
-      // Hide the success message after 3 seconds
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+        // Hide the success message after 3 seconds
+        setTimeout(() => {
+          setMessage(null);
+        }, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleEditFormSubmit = (event) => {
@@ -99,7 +115,7 @@ export default function AdminPage_Drivers() {
       _id: editContactId,
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
-      email: editFormData.email
+      email: editFormData.email,
     };
 
     //Without axios, frontend only
@@ -134,7 +150,7 @@ export default function AdminPage_Drivers() {
     const formValues = {
       firstName: contact.firstName,
       lastName: contact.lastName,
-      email: contact.email
+      email: contact.email,
     };
 
     setEditFormData(formValues);
