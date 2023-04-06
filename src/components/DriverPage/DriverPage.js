@@ -1,13 +1,16 @@
 import React, { useState, useEffect, Fragment } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "../api/axios";
-
+import IconButton from '@mui/material/IconButton';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //import data from "./appointments-mock-data.json";
 import Table from "react-bootstrap/Table";
 import GoogleMap from "./GoogleMap2";
 // import OpenMaps from '../Openmaps';
 import MyMap from "../Archiv/MyMap";
 import { ChakraProvider, theme } from "@chakra-ui/react";
+import MainFeaturedPost from '../HomePage/MainFeaturedPost';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,6 +33,17 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+const title = {
+  title: 'Driver Page',
+  description:
+    "",
+  image: "https://source.unsplash.com/D-qq7W751vs/",
+  imageText: '',
+  linkText: '',
+  imageText: '',
+  linkText: '',
+};
 
 export default function DriverPage() {
   const token = localStorage.getItem("token");
@@ -82,14 +96,22 @@ export default function DriverPage() {
 
   return (
     <div className="app-container">
-      <h1>Driver Page</h1>
+      {/* <h1>Driver Page</h1> */}
+      <MainFeaturedPost post={title} />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs="auto">
-            <Item>Driver Name: {user.firstName + " " + user.lastName}</Item>
+            <Item>
+            <IconButton>
+              <AccountCircleIcon fontSize="medium" variant="outlined"/>
+            </IconButton>
+              Driver Name: {user.firstName + " " + user.lastName}</Item>
           </Grid>
           <Grid item xs="auto">
             <Item>
+            <IconButton>
+              <CalendarMonthIcon fontSize="medium" variant="outlined"/>
+            </IconButton>
               Collection Date:
               <select value={selectedDate} onChange={handleDateChange}>
                 {appointmentDates.map((date) => (

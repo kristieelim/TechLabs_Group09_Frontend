@@ -8,6 +8,7 @@ import jwt_decode from "jwt-decode";
 import icon from '../images/Tafel_Deutschland_logo.png'
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Navbar() {
   const [isDriver, setIsDriver] = useState(false);
@@ -47,6 +48,7 @@ export default function Navbar() {
         <IconButton>
           <HomeIcon fontSize="medium" variant="outlined"/>
         </IconButton>
+        
       </OldSchoolMenuLink>
         {!user && <OldSchoolMenuLink to="/Login">
           <Button variant="outlined" size="small">
@@ -55,25 +57,35 @@ export default function Navbar() {
           </OldSchoolMenuLink>}
          
         {/* // With Authorization */}
-        {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
-        {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
+        {isEmployee && <CustomLink to="/StorePage"><Button variant="outlined" size="small" >
+          Store Page
+          </Button></CustomLink>}
+        {isDriver && <CustomLink to="/DriverPage">
+          <Button variant="outlined" size="small"> Driver Page </Button> 
+          </CustomLink>}
         {isAdmin && (
-          <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
+          <OldSchoolMenuLink to="/AdminPage_Stores">
+            <Button variant="outlined" size="small">Stores</Button>
+            </OldSchoolMenuLink>
         )}
         {isAdmin && (
-          <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+          <OldSchoolMenuLink to="/AdminPage_Drivers">
+            <Button variant="outlined" size="small">Drivers</Button>
+            </OldSchoolMenuLink>
         )}
        
 
         {/* Without Authorization */}
-        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
+        {/* <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink> */}
 
         {user && (
           <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
-            Sign out
+            <IconButton>
+              <LogoutIcon fontSize="medium" variant="outlined"/>
+            </IconButton>
           </OldSchoolMenuLink>
         )}
       

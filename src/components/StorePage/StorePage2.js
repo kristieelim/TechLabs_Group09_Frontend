@@ -3,16 +3,16 @@ import {nanoid} from 'nanoid';
 import data from "./food-data.json";
 import jwt_decode from "jwt-decode";
 import axios from '../api/axios';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ReadOnlyRow from './foodReadOnlyRow';
 import EditableRow from './FoodEditable';
 import Table from 'react-bootstrap/Table';
 import DatePicker1 from "./DatePicker";
-
+import MainFeaturedPost from '../HomePage/MainFeaturedPost';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import IconButton from '@mui/material/IconButton';
 import 'react-datepicker/dist/react-datepicker.css'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -31,13 +31,29 @@ import InputBase from '@mui/material/InputBase';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 
-
+import Title from '../Title';
 
 
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+
+
+const title = {
+  title: 'Store Page',
+  description:
+    "",
+  image: "https://source.unsplash.com/D6Tu_L3chLE/",
+  imageText: '',
+  linkText: '',
+  imageText: '',
+  linkText: '',
+};
+
+
+
 const today = dayjs();
 const isInCurrentYear = (date) => date.get('year') === dayjs().get('year');
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -285,28 +301,32 @@ export default function StorePage() {
     <section>
       <ThemeProvider theme={theme}>
         <div className="app-container">
-          <h1>Store Page</h1>
+          {/* <h1>Store Page</h1> */}
+          <MainFeaturedPost post={title} />
+
           <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={22}>
               <Grid item xs="auto">
-                <Item>Employee Name: {user.firstName + " " + user.lastName}</Item>
+                <Item > 
+                <IconButton>
+                  <AccountCircleIcon fontSize="medium" variant="outlined"/>
+                </IconButton>
+                  Employee Name: {user.firstName + " " + user.lastName}</Item>
               </Grid>
             </Grid>
           </Box>
           
           
           
-          <h2>Select Date and Time</h2>
+          {/* <h2>Select Date and Time</h2> */}
           <div style={{ display: "inline-block" }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker defaultValue={today} shouldDisableYear={isInCurrentYear} onChange={handleDateChange} />
-            {/* <DatePicker
-            
-            // selected={selectedDate}
-            // onChange={(date) => setSelectedDate(date)}
-            // dateFormat="dd/MM/yyyy"
-            // minDate={new Date()}
-            /> */}
+          <DateTimePicker defaultValue={today} shouldDisableYear={isInCurrentYear} 
+          // selected={selectedDate} 
+          onChange={(date) => setSelectedDate(date)} 
+          dateFormat="dd/MM/yyyy"
+          // minDate={new Date()}
+          />
             </LocalizationProvider>
         </div>
           {/* <DatePicker1 /> */}

@@ -5,7 +5,7 @@ import StorePage from "./components/StorePage/StorePage2";
 import DriverPage from "./components/DriverPage/DriverPage";
 import AdminPage_Stores from "./components/AdminPage_Stores/AdminPage_Stores";
 import AdminPage_Drivers from "./components/AdminPage_Drivers/AdminPage_Drivers";
-import HomePage from "./components/HomePage/Blog";
+import HomePage from "./components/HomePage/HomePage";
 import Login from "./components/Login";
 import Register from "./components/RegisterPage/Register";
 import VerifyOTP from "./components/VerifyOTP";

@@ -1,3 +1,9 @@
+@fontface {
+  font-family: 'Bungee Inline', cursive;
+  src: url('https://fonts.googleapis.com/css?family=Bungee+Inline')
+}
+
+
 /* .App {
   text-align: center;
 }  */
@@ -94,6 +100,8 @@ padding: 0 1rem;
   color: #EE7F00;
   font-weight: 700;
   font-size: 32px;
+  /* font-family: 'Bungee Inline', cursive; */
+  font-family: 'Open Sans', sans-serif;
 }
 
 .nav--view {
@@ -221,16 +229,20 @@ h1 {
 
 h1 {
 	padding-top: 50px;
-	color: #808080;
-	font-size: 20px;
+  padding-bottom: 50px;
+	color: black;
+	font-size: 30px;
 	text-align: center;
+  /* font-family: 'Bungee Inline', cursive; */
+  font-family: 'Open Sans', sans-serif;
 }
 
 h2 {
 	padding-top: 20px;
-	color: #808080;
+	color: #625f5f;
 	font-size: 10px;
 	text-align: left;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .maintext{
@@ -261,3 +273,15 @@ h2 {
   border: 0;
 }
 
+
+.hometext{
+  /* font-family: 'Bungee Inline', cursive; */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.logout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; 
+}
