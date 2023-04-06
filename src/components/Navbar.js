@@ -53,11 +53,8 @@ export default function Navbar() {
           Sign in
           </Button>
           </OldSchoolMenuLink>}
-        {!user && <OldSchoolMenuLink to="/Register">
-          <Button variant="outlined" size="small">
-          Sign up
-          </Button>
-          </OldSchoolMenuLink>}
+         
+        {/* // With Authorization */}
         {isEmployee && <CustomLink to="/StorePage">Store Page</CustomLink>}
         {isDriver && <CustomLink to="/DriverPage">Driver Page</CustomLink>}
         {isAdmin && (
@@ -66,21 +63,21 @@ export default function Navbar() {
         {isAdmin && (
           <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
         )}
-        */}
+       
 
-        {/* Without Authorization*/}
+        {/* Without Authorization */}
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
 
         {user && (
-      <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
-        Sign out
-      </OldSchoolMenuLink>
+          <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
+            Sign out
+          </OldSchoolMenuLink>
         )}
       
-      {/* </nav> */}
+    
     </Toolbar>
     
   );

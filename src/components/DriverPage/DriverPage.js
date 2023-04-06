@@ -103,7 +103,7 @@ export default function DriverPage() {
         </Grid>
       </Box>
 
-      {/* <MyMap /> */}
+      
 
       <Table striped bordered hover width="auto">
         <thead>
