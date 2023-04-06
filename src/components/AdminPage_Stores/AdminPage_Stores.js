@@ -7,8 +7,19 @@ import Table from "react-bootstrap/Table";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "../api/axios";
+import MainFeaturedPost from '../HomePage/MainFeaturedPost';
 
 const USER_URL = "/api/user/";
+const title = {
+  title: 'List of Store Employees',
+  description:
+    "",
+  image: "https://source.unsplash.com/wVoP_Q2Bg_A/",
+  imageText: '',
+  linkText: '',
+  imageText: '',
+  linkText: '',
+};
 
 export default function AdminPage_Stores() {
   const [contacts, setContacts] = useState([]);
@@ -185,7 +196,8 @@ export default function AdminPage_Stores() {
 
   return (
     <div className="app-container">
-      <h1>List of Store Employees</h1>
+      {/* <h1>List of Store Employees</h1> */}
+      <MainFeaturedPost post={title} />
 
       <h2>Add a store employee</h2>
 

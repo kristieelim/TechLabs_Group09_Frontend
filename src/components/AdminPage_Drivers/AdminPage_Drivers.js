@@ -7,8 +7,19 @@ import Table from "react-bootstrap/Table";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "../api/axios";
+import MainFeaturedPost from '../HomePage/MainFeaturedPost';
 
 const USER_URL = "/api/user/";
+const title = {
+  title: 'List of Drivers',
+  description:
+    "",
+  image: "https://source.unsplash.com/QgEVtKFjlog/",
+  imageText: '',
+  linkText: '',
+  imageText: '',
+  linkText: '',
+};
 
 export default function AdminPage_Drivers() {
   const [contacts, setContacts] = useState([]);
@@ -182,9 +193,10 @@ export default function AdminPage_Drivers() {
 
   return (
     <div className="app-container">
-      <h1>List of Drivers</h1>
+      {/* <h1>List of Drivers</h1> */}
 
-      <h2>Add a driver</h2>
+      {/* <h2>Add a driver</h2> */}
+      <MainFeaturedPost post={title} />
 
       {message && (
         <div className={`alert alert-${message.type}`} role="alert">

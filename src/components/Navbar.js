@@ -76,10 +76,10 @@ export default function Navbar() {
        
 
         {/* Without Authorization */}
-        {/* <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
+        <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink> */}
+        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
 
         {user && (
           <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>

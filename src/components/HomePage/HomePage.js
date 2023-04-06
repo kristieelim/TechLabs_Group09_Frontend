@@ -24,7 +24,7 @@ const mainFeaturedPost = {
   imageText: '',
   linkText: '',
   imageText: '',
-  linkText: '',
+  linkText: 'Read more about the Tafel organization...',
 };
 
 const featuredPosts = [
