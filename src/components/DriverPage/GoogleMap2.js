@@ -107,12 +107,12 @@ export default function GoogleMap2(props) {
       h="100vh"
       w="100vw"
     >
-      <Box position="absolute" left={0} top={0} h="100%" w="100%">
+      <Box position="absolute" left={0} top={0} h="70%" w="70%">
         {/* Google Map Box */}
         <GoogleMap
           center={props.points_of_interest.center}
           zoom={15}
-          mapContainerStyle={{ width: "100%", height: "100%" }}
+          mapContainerStyle={{ width: "60%", height: "80%" }}
           options={{
             zoomControl: false,
             streetViewControl: false,
@@ -143,13 +143,15 @@ export default function GoogleMap2(props) {
         minW="container.md"
         zIndex="1"
       > */}
-        <Button colorScheme='teal' size='lg'
-          type="button"
-          value="Calculate Routes"
-          onClick={calculateRoute}
-        >
-          Calculate Routes
-        </Button>  
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Button colorScheme='teal' size='lg'
+            type="button"
+            value="Calculate Routes"
+            onClick={calculateRoute}
+          >
+            Calculate Routes
+          </Button>
+        </div>
       
 
       {/* </Box> */}

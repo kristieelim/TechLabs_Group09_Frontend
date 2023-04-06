@@ -8,6 +8,11 @@ import ReadOnlyRow from './foodReadOnlyRow';
 import EditableRow from './FoodEditable';
 import Table from 'react-bootstrap/Table';
 import DatePicker1 from "./DatePicker";
+
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 import 'react-datepicker/dist/react-datepicker.css'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -22,6 +27,25 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
+
+
+
+
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+const today = dayjs();
+const isInCurrentYear = (date) => date.get('year') === dayjs().get('year');
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(3),
@@ -158,33 +182,55 @@ export default function StorePage() {
     setEditFormData(newFormData);
   };
 
+
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/your-api-endpoint', {
+        date: selectedDate
+      });
+
+      console.log(response.data); // 打印后端响应数据
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
   
-    const newfood = {
+    const newFood = {
       id: nanoid(),
       food: addFormData.food,
       foodQuantity: addFormData.foodQuantity,
       unit: addFormData.unit,
     };
   
-    // const restaurantId = restaurant._id;
-    
-    // axios
-    //   .post(`api/appointment/${restaurantId}/food`, newfood)
-    //   .then((response)=>{
-    //     const addedFood = response.data.data;
-    //     setfoods([...foods, addedFood]);
-    //     setAddFormData({
-    //       food: "",
-    //       foodQuantity: 0.0,
-    //       unit: "",
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    const restaurantId = restaurant._id;
+  
+    axios
+      .post(`/api/appointment/${restaurantId}/food`, newFood)
+      .then((response) => {
+        const { data: { data: addedFood } } = response;
+        setfoods([...foods, addedFood]);
+        setAddFormData({
+          food: "",
+          foodQuantity: 0.0,
+          unit: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+  
   
     
 
@@ -240,18 +286,30 @@ export default function StorePage() {
       <ThemeProvider theme={theme}>
         <div className="app-container">
           <h1>Store Page</h1>
-          <h2>Employee Name: {user.firstName + " " + user.lastName}</h2>
-
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+              <Grid item xs="auto">
+                <Item>Employee Name: {user.firstName + " " + user.lastName}</Item>
+              </Grid>
+            </Grid>
+          </Box>
+          
+          
+          
           <h2>Select Date and Time</h2>
-          {/* <div style={{ display: "inline-block" }}>
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          dateFormat="dd/MM/yyyy"
-          minDate={new Date()}
-        />
-      </div> */}
-          <DatePicker1 />
+          <div style={{ display: "inline-block" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateTimePicker defaultValue={today} shouldDisableYear={isInCurrentYear} onChange={handleDateChange} />
+            {/* <DatePicker
+            
+            // selected={selectedDate}
+            // onChange={(date) => setSelectedDate(date)}
+            // dateFormat="dd/MM/yyyy"
+            // minDate={new Date()}
+            /> */}
+            </LocalizationProvider>
+        </div>
+          {/* <DatePicker1 /> */}
 
           {/* 
       <div style={{ display: "inline-block", marginLeft: "10px" }}>

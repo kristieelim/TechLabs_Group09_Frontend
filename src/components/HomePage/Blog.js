@@ -12,52 +12,41 @@ import FeaturedPost from './FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
 
-const sections = [
-  { title: 'Technology', url: '#' },
-  { title: 'Design', url: '#' },
-  { title: 'Culture', url: '#' },
-  { title: 'Business', url: '#' },
-  { title: 'Politics', url: '#' },
-  { title: 'Opinion', url: '#' },
-  { title: 'Science', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Style', url: '#' },
-  { title: 'Travel', url: '#' },
-];
+
+
 
 const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
+  title: 'Tafel Route - A Solution to Food Distribution',
   description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
+    "Tafel Route is a platform that simplifies the food distribution process for non-profit organizations. We provide an easy-to-use interface for restaurants and drivers, enabling them to efficiently donate and collect surplus food for distribution to those in need.",
+  image: "https://source.unsplash.com/D6Tu_L3chLE/",
   imageText: 'main image description',
   linkText: 'Continue reading…',
+  imageText: 'main image description',
+  linkText: '',
 };
 
 const featuredPosts = [
   {
-    title: 'Featured post',
-    date: 'Nov 12',
+    title: 'Restaurant Dashboard',
+    date: '',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+      'Our user-friendly restaurant dashboard simplifies the surplus food donation process by allowing restaurants to easily upload and track their donations.',
+    image: 'https://source.unsplash.com/E87UW-n4X1Q',
     imageLabel: 'Image Text',
   },
   {
-    title: 'Post title',
-    date: 'Nov 11',
+    title: 'Driver Routing System',
+    date: '',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+      'We provide drivers with optimized routes and schedules for food pickup, reducing gas and time expenses and ensuring timely delivery to those in need.',
+    image: 'https://source.unsplash.com/RrzeCGujVfU',
     imageLabel: 'Image Text',
   },
 ];
 
-const posts = [post1, post2, post3];
+
 
 const sidebar = {
   title: 'About',
@@ -98,20 +87,20 @@ export default function Blog() {
               <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
+          {/* <Grid container spacing={5} sx={{ mt: 3 }}> */}
             {/* <Main title="From the firehose" posts={posts} /> */}
-            <Sidebar
+            {/* <Sidebar
               title={sidebar.title}
               description={sidebar.description}
               archives={sidebar.archives}
               social={sidebar.social}
-            />
-          </Grid>
+            /> */}
+          {/* </Grid> */}
         </main>
       </Container>
       <Footer
-        title="Footer"
-        description="Something here to give the footer a purpose!"
+        title=""
+        description=""
       />
     </ThemeProvider>
   );

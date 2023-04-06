@@ -141,10 +141,11 @@ export default function DriverPage() {
       </Table>
       
       <ChakraProvider theme={theme}>
-      <Container maxW='md'>
-        <div>
-          <GoogleMap points_of_interest={points_of_interest} />
-        </div>
+      <Container maxW="lg" style={{ textAlign: 'left' }}>
+      <div style={{ position: 'relative' }}>
+          <GoogleMap
+          points_of_interest={points_of_interest}/>
+      </div>
       </Container>
       </ChakraProvider>
      
