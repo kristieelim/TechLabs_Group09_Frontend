@@ -1,26 +1,32 @@
-import React, {useState, useEffect, Fragment}  from 'react'
+import React, { useState, useEffect, Fragment } from "react";
 //import {nanoid} from 'nanoid';
 //import data from "./stores-mock-data.json";
-import ReadOnlyRow from './storeReadOnlyRow';
-import EditableRow from './storeEditableRow';
-import Table from 'react-bootstrap/Table';
+import ReadOnlyRow from "./storeReadOnlyRow";
+import EditableRow from "./storeEditableRow";
+import Table from "react-bootstrap/Table";
 import Button from "@mui/material/Button";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import axios from "../api/axios";
 
 const USER_URL = "/api/user/";
 
 export default function AdminPage_Stores() {
-    const [contacts, setContacts] = useState([]);
-    const [message, setMessage] = useState(null);
+  const [contacts, setContacts] = useState([]);
+  const [message, setMessage] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     axios
       .get(USER_URL)
       .then((response) => {
         setContacts(
           response.data.data.filter(
-            (item) => item.type === "EMPLOYEE" && item.isConfirmed === true
+            (item) =>
+              item.type === "EMPLOYEE" &&
+              item.isConfirmed === true &&
+              //for cosmetics purposes only
+              item.firstName !== "employee" &&
+              item.firstName !== "max" &&
+              item.firstName !== "Admin"
           )
         );
       })
@@ -29,17 +35,17 @@ export default function AdminPage_Stores() {
       });
   }, []);
 
-    const [addFormData, setAddFormData] = useState({
+  const [addFormData, setAddFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const [editFormData, setEditFormData] = useState({
     fullName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -76,7 +82,7 @@ export default function AdminPage_Stores() {
       firstName: addFormData.firstName,
       lastName: addFormData.lastName,
       type: "EMPLOYEE",
-      password: addFormData.password
+      password: addFormData.password,
     };
 
     axios
@@ -90,7 +96,10 @@ export default function AdminPage_Stores() {
           email: "",
           password: "",
         });
-        setMessage({ type: "success", text: "New store employee added successfully." });
+        setMessage({
+          type: "success",
+          text: "New store employee added successfully.",
+        });
 
         // Hide the success message after 3 seconds
         setTimeout(() => {
@@ -109,7 +118,7 @@ export default function AdminPage_Stores() {
       _id: editContactId,
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
-      email: editFormData.email
+      email: editFormData.email,
     };
 
     //Without axios, frontend only
@@ -144,7 +153,7 @@ export default function AdminPage_Stores() {
     const formValues = {
       firstName: contact.firstName,
       lastName: contact.lastName,
-      email: contact.email
+      email: contact.email,
     };
 
     setEditFormData(formValues);
