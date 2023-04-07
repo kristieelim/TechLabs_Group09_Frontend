@@ -170,6 +170,7 @@ const Register = () => {
                         })}
                         label="Single select"
                         required
+                        styles={{ menu: base => ({ ...base, zIndex: 100 }) }}
                       />
                     </Grid>
 
@@ -179,7 +180,7 @@ const Register = () => {
                         required
                         fullWidth
                         // label={<InputLabel >First Name</InputLabel>}
-                        // label='First Name'
+                        label='First Name'
                         autoFocus
                         type="text"
                         id="firstName"
@@ -187,10 +188,10 @@ const Register = () => {
                         autoComplete="off"
                         onChange={(e) => setFirstName(e.target.value)}
                         value={firstName}
-                        placeholder="First Name*"
-                        InputLabelProps={{
-                          shrink: true,
-                        }} 
+                        placeholder="First Name"
+                        // InputLabelProps={{
+                        //   shrink: true,
+                        // }} 
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -198,14 +199,14 @@ const Register = () => {
                         required
                         fullWidth
                         id="lastName"
-                        // label={<InputLabel >Last Name</InputLabel>}
+                        label='Last Name'
                         name="lastName"
                         type="text"
                         ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setLastName(e.target.value)}
                         value={lastName}
-                        placeholder="Last Name*"
+                        placeholder="Last Name"
                         InputLabelProps={{
                           shrink: true,
                         }} 
@@ -216,14 +217,14 @@ const Register = () => {
                         required
                         fullWidth
                         id="email"
-                        // label={<InputLabel >Email Address</InputLabel>}
+                        label='Email Address'
                         name="email"
                         type="email"
                         ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        placeholder="Email*"
+                        placeholder="Email"
                         InputLabelProps={{
                           shrink: true,
                         }} 
