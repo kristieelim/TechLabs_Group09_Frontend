@@ -436,7 +436,7 @@ export default function StorePage() {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Type</th>
+                  <th>Item</th>
                   <th>Amount</th>
                   <th>Unit</th>
                   <th>Actions</th>
