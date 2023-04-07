@@ -9,6 +9,7 @@ import icon from '../images/Tafel_Deutschland_logo.png'
 import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Stack from '@mui/material/Stack';
 
 export default function Navbar() {
   const [isDriver, setIsDriver] = useState(false);
@@ -49,20 +50,22 @@ export default function Navbar() {
           <HomeIcon fontSize="medium" variant="outlined" />
         </IconButton>
       </OldSchoolMenuLink>
+      <Stack className="logout" spacing={2} direction="row">
       {!user && (
         <OldSchoolMenuLink to="/Login">
-          <Button variant="outlined" size="small">
+          <Button variant="text" size="small">
             Sign in
           </Button>
         </OldSchoolMenuLink>
       )}
       {!user && (
         <OldSchoolMenuLink to="/Register">
-          <Button variant="outlined" size="small">
-            Sign up
+          <Button variant="contained" color="success" size="small">
+          Register
           </Button>
         </OldSchoolMenuLink>
       )}
+      </Stack>
 
       {/* With Authorization */}
       {isEmployee && (

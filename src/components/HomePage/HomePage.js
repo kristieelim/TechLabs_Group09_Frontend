@@ -19,7 +19,7 @@ import Footer from './Footer';
 const mainFeaturedPost = {
   title: 'Tafel Route - A Solution to Food Distribution',
   description:
-    "Our platform simplifies the food distribution process for non-profit organizations. We provide an easy-to-use interface for restaurants and drivers, enabling them to efficiently donate and collect surplus food for distribution to those in need.",
+    "Our platform simplifies the food distribution process for non-profit organizations called Tafel. We provide an easy-to-use interface for stores and drivers, enabling them to efficiently donate and collect surplus food for distribution to those in need.",
   image: "https://source.unsplash.com/D6Tu_L3chLE/",
   imageText: '',
   linkText: '',
@@ -29,10 +29,10 @@ const mainFeaturedPost = {
 
 const featuredPosts = [
   {
-    title: 'Restaurant Dashboard',
+    title: 'Store Dashboard',
     date: '',
     description:
-      'Our user-friendly restaurant dashboard simplifies the surplus food donation process by allowing restaurants to easily upload and track their donations.',
+      'Our user-friendly store dashboard simplifies the surplus food donation process by allowing stores employee to easily upload and track their donations.',
     image: 'https://source.unsplash.com/RrzeCGujVfU/w=600',
     imageLabel: 'Image Text',
   },
@@ -88,6 +88,7 @@ export default function Blog() {
           </Grid>
         </main>
       </Container>
+      
       <Footer
         title=""
         description=""
