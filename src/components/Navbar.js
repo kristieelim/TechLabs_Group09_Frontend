@@ -39,59 +39,80 @@ export default function Navbar() {
   };
 
   return (
-    <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
       {/* <nav className="navbar"> */}
       <img src={icon} className="nav--icon" />
       <h3 className="tafel">Tafel Route</h3>
 
       <OldSchoolMenuLink to="/">
         <IconButton>
-          <HomeIcon fontSize="medium" variant="outlined"/>
+          <HomeIcon fontSize="medium" variant="outlined" />
         </IconButton>
-        
       </OldSchoolMenuLink>
-        {!user && <OldSchoolMenuLink to="/Login">
+      {!user && (
+        <OldSchoolMenuLink to="/Login">
           <Button variant="outlined" size="small">
-          Sign in
+            Sign in
           </Button>
-          </OldSchoolMenuLink>}
-         
-        {/* // With Authorization */}
-        {isEmployee && <CustomLink to="/StorePage"><Button variant="outlined" size="small" >
-          Store Page
-          </Button></CustomLink>}
-        {isDriver && <CustomLink to="/DriverPage">
-          <Button variant="outlined" size="small"> Driver Page </Button> 
-          </CustomLink>}
-        {isAdmin && (
-          <OldSchoolMenuLink to="/AdminPage_Stores">
-            <Button variant="outlined" size="small">Stores</Button>
-            </OldSchoolMenuLink>
-        )}
-        {isAdmin && (
-          <OldSchoolMenuLink to="/AdminPage_Drivers">
-            <Button variant="outlined" size="small">Drivers</Button>
-            </OldSchoolMenuLink>
-        )}
-       
+        </OldSchoolMenuLink>
+      )}
+      {!user && (
+        <OldSchoolMenuLink to="/Register">
+          <Button variant="outlined" size="small">
+            Sign up
+          </Button>
+        </OldSchoolMenuLink>
+      )}
 
-        {/* Without Authorization */}
+      {/* With Authorization */}
+      {isEmployee && (
+        <CustomLink to="/StorePage">
+          <Button variant="outlined" size="small">
+            Store Page
+          </Button>
+        </CustomLink>
+      )}
+      {isDriver && (
+        <CustomLink to="/DriverPage">
+          <Button variant="outlined" size="small">
+            {" "}
+            Driver Page{" "}
+          </Button>
+        </CustomLink>
+      )}
+
+      {/*
+      {isAdmin && (
+        <OldSchoolMenuLink to="/AdminPage_Stores">
+          <Button variant="outlined" size="small">
+            Stores
+          </Button>
+        </OldSchoolMenuLink>
+      )}
+      {isAdmin && (
+        <OldSchoolMenuLink to="/AdminPage_Drivers">
+          <Button variant="outlined" size="small">
+            Drivers
+          </Button>
+        </OldSchoolMenuLink>
+      )}
+      */}
+
+      {/* Without Authorization 
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
-        <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
+        */}
+      <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
+      <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
 
-        {user && (
-          <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
-            <IconButton>
-              <LogoutIcon fontSize="medium" variant="outlined"/>
-            </IconButton>
-          </OldSchoolMenuLink>
-        )}
-      
-    
+      {user && (
+        <OldSchoolMenuLink to="/Logout" onClick={handleLogout}>
+          <IconButton>
+            <LogoutIcon fontSize="medium" variant="outlined" />
+          </IconButton>
+        </OldSchoolMenuLink>
+      )}
     </Toolbar>
-    
   );
 }
 
