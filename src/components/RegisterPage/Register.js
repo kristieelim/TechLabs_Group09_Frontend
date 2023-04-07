@@ -207,9 +207,9 @@ const Register = () => {
                         onChange={(e) => setLastName(e.target.value)}
                         value={lastName}
                         placeholder="Last Name"
-                        InputLabelProps={{
-                          shrink: true,
-                        }} 
+                        // InputLabelProps={{
+                        //   shrink: true,
+                        // }} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -225,9 +225,9 @@ const Register = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         placeholder="Email"
-                        InputLabelProps={{
-                          shrink: true,
-                        }} 
+                        // InputLabelProps={{
+                        //   shrink: true,
+                        // }} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -253,9 +253,9 @@ const Register = () => {
                         onFocus={() => setPwdFocus(true)}
                         onBlur={() => setPwdFocus(false)}
                         placeholder="Password"
-                        InputLabelProps={{
-                          shrink: true,
-                        }} 
+                        // InputLabelProps={{
+                        //   shrink: true,
+                        // }} 
                       />
                       <p
                         id="pwdnote"
@@ -306,9 +306,9 @@ const Register = () => {
                         onFocus={() => setMatchPwdFocus(true)}
                         onBlur={() => setMatchPwdFocus(false)}
                         placeholder="Confirm Password"
-                        InputLabelProps={{
-                          shrink: true,
-                        }} 
+                        // InputLabelProps={{
+                        //   shrink: true,
+                        // }} 
                       />
 
                       <p
