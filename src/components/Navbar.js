@@ -102,6 +102,7 @@ export default function Navbar() {
         <OldSchoolMenuLink to="/StorePage">Store Page</OldSchoolMenuLink>
         <OldSchoolMenuLink to="/DriverPage">Driver Page</OldSchoolMenuLink>
         */}
+      <OldSchoolMenuLink to="/StorePage3">StorePage3</OldSchoolMenuLink>
       <OldSchoolMenuLink to="/AdminPage_Stores">Stores</OldSchoolMenuLink>
       <OldSchoolMenuLink to="/AdminPage_Drivers">Drivers</OldSchoolMenuLink>
 

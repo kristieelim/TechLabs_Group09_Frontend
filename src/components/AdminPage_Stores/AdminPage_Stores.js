@@ -115,7 +115,7 @@ export default function AdminPage_Stores() {
         // Hide the success message after 3 seconds
         setTimeout(() => {
           setMessage(null);
-        }, 3000);
+        }, 5000);
       })
       .catch((error) => {
         console.log(error);
