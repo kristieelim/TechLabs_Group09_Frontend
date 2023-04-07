@@ -23,6 +23,9 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import points_of_interest from "./points_of_interest.json";
+import { filter } from "lodash";
+
+
 
 const APPOINTMENT_URL = "/api/appointment/";
 const RESTAURANT_URL = "/api/restaurant/";
@@ -52,6 +55,7 @@ export default function DriverPage() {
   const [appointments, setAppointments] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [restaurantNames, setRestaurantNames] = useState({});
+  const [appointmentbyDate, setAppointmentbyDate] = useState({});
 
   useEffect(() => {
     axios
@@ -66,6 +70,33 @@ export default function DriverPage() {
         console.log(error);
       });
   }, [user._id]);
+
+  useEffect(() =>{
+    const currentDate = new Date(selectedDate).toDateString() 
+    const filteredAppointmentsbyDate = appointments.filter(
+      (appointment) => {
+        const currentDate1 = new Date(appointment.pickupDateAndTime).toDateString() 
+        return currentDate1 == currentDate
+      }
+    );
+     console.log(filteredAppointmentsbyDate)
+
+    const aa = filteredAppointmentsbyDate.map((appointment)=>{ 
+  
+      return{
+        lat: appointment.coordinates[0],
+        lng: appointment.coordinates[1]}
+    })
+    console.log(aa)
+    const res = {}
+    Object.assign(res,aa)
+    setAppointmentbyDate(res)
+    console.log(appointmentbyDate)
+    console.log(res)
+  },[selectedDate]
+  )
+
+
 
   useEffect(() => {
     axios.get(RESTAURANT_URL).then((response) => {
@@ -92,7 +123,9 @@ export default function DriverPage() {
 
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
+
   };
+
 
   return (
     <div className="app-container">
@@ -166,7 +199,7 @@ export default function DriverPage() {
       <Container maxW="lg" style={{ textAlign: 'left' }}>
       <div style={{ position: 'relative' }}>
           <GoogleMap
-          points_of_interest={points_of_interest}/>
+          points_of_interest={appointmentbyDate}/>
       </div>
       </Container>
       </ChakraProvider>

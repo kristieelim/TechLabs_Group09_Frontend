@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { faCheck, faTimes, faInfoCircle,} from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
 import "./Register.css";
 import Select from "react-select";
+import { InputLabel } from "@mui/material";
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/api/auth/register";
@@ -160,7 +162,7 @@ const Register = () => {
                 >
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
-                      <Select
+                      <Select 
                         options={options}
                         onChange={handleTypeSelect}
                         value={options.filter(function (option) {
@@ -172,11 +174,12 @@ const Register = () => {
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                      <TextField
+                      <TextField 
                         name="firstName"
                         required
                         fullWidth
-                        label="First Name"
+                        // label={<InputLabel >First Name</InputLabel>}
+                        // label='First Name'
                         autoFocus
                         type="text"
                         id="firstName"
@@ -184,7 +187,10 @@ const Register = () => {
                         autoComplete="off"
                         onChange={(e) => setFirstName(e.target.value)}
                         value={firstName}
-                        placeholder="First Name"
+                        placeholder="First Name*"
+                        InputLabelProps={{
+                          shrink: true,
+                        }} 
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -192,14 +198,17 @@ const Register = () => {
                         required
                         fullWidth
                         id="lastName"
-                        label="Last Name"
+                        // label={<InputLabel >Last Name</InputLabel>}
                         name="lastName"
                         type="text"
                         ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setLastName(e.target.value)}
                         value={lastName}
-                        placeholder="Last Name"
+                        placeholder="Last Name*"
+                        InputLabelProps={{
+                          shrink: true,
+                        }} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -207,14 +216,17 @@ const Register = () => {
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        // label={<InputLabel >Email Address</InputLabel>}
                         name="email"
                         type="email"
                         ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        placeholder="Email"
+                        placeholder="Email*"
+                        InputLabelProps={{
+                          shrink: true,
+                        }} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -240,6 +252,9 @@ const Register = () => {
                         onFocus={() => setPwdFocus(true)}
                         onBlur={() => setPwdFocus(false)}
                         placeholder="Password"
+                        InputLabelProps={{
+                          shrink: true,
+                        }} 
                       />
                       <p
                         id="pwdnote"
@@ -290,6 +305,9 @@ const Register = () => {
                         onFocus={() => setMatchPwdFocus(true)}
                         onBlur={() => setMatchPwdFocus(false)}
                         placeholder="Confirm Password"
+                        InputLabelProps={{
+                          shrink: true,
+                        }} 
                       />
 
                       <p
