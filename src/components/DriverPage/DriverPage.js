@@ -197,10 +197,10 @@ export default function DriverPage() {
       
       <ChakraProvider theme={theme}>
       <Container maxW="lg" style={{ textAlign: 'left' }}>
-      <div style={{ position: 'relative' }}>
+      {/* <div style={{ position: 'relative' }}> */}
           <GoogleMap
           points_of_interest={appointmentbyDate}/>
-      </div>
+      {/* </div> */}
       </Container>
       </ChakraProvider>
     

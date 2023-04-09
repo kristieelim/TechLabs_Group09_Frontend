@@ -105,7 +105,7 @@ export default function StorePage() {
   const [restaurant, setRestaurant] = useState([]);
   const [user, setUser] = useState(decoded);
   const [appointment, setAppointment] = useState([]);
-  const [foods, setfoods] = useState([]);
+  const [foods, setfoods] = useState([data]);
   const [selectedDate, setSelectedDate] = useState(null);
 
     const config = {
@@ -319,10 +319,10 @@ export default function StorePage() {
           {/* <h2>Select Date and Time</h2> */}
           <div style={{ display: "inline-block" }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker defaultValue={today} shouldDisableYear={isInCurrentYear} 
+          <DatePicker defaultValue={today} shouldDisableYear={isInCurrentYear} 
           // selected={selectedDate} 
           onChange={(date) => setSelectedDate(date)} 
-          dateFormat="dd/MM/yyyy"
+          dateFormat="yyyy-MM-dd"
           // minDate={new Date()}
           />
             </LocalizationProvider>
