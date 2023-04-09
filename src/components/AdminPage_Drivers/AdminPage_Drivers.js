@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "../api/axios";
 import MainFeaturedPost from '../HomePage/MainFeaturedPost';
+import { editableInputTypes } from "@testing-library/user-event/dist/utils";
 
 const USER_URL = "/api/user/";
 const title = {
@@ -37,7 +38,8 @@ export default function AdminPage_Drivers() {
               //just for some cosmetics
               item.email !== null &&
               item.firstName !== "Seb" &&
-              item.firstName !== "Driver1"
+              item.firstName !== "Driver1" &&
+              item.lastName !== "He"
           )
         );
       })
@@ -119,14 +121,27 @@ export default function AdminPage_Drivers() {
       });
   };
 
+  const getPasswordById = (id) => {
+    const contact = contacts.find((contact) => contact._id === id);
+    if (contact) {
+      return contact.password;
+    } else {
+      return null;
+    }
+  };
+
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
+
+    const editContactPassword = getPasswordById(editContactId);
+    console.log(editContactPassword);
 
     const editedContact = {
       _id: editContactId,
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
       email: editFormData.email,
+      password: editContactPassword
     };
 
     //Without axios, frontend only
@@ -162,6 +177,7 @@ export default function AdminPage_Drivers() {
       firstName: contact.firstName,
       lastName: contact.lastName,
       email: contact.email,
+      
     };
 
     setEditFormData(formValues);
@@ -179,7 +195,11 @@ export default function AdminPage_Drivers() {
     //setContacts(newContacts);
 
     axios
-      .delete(USER_URL + contactId)
+      .delete(USER_URL + contactId, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then(() => {
         const newContacts = contacts.filter(
           (contact) => contact._id !== contactId
@@ -204,6 +224,8 @@ export default function AdminPage_Drivers() {
         </div>
       )}
 
+      {/*
+      //Remove add a user function
       <form onSubmit={handleAddFormSubmit}>
         <TextField
           id="outlined-basic"
@@ -253,6 +275,7 @@ export default function AdminPage_Drivers() {
           Add
         </Button>
       </form>
+      */}
 
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>

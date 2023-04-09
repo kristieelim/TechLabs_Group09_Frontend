@@ -32,12 +32,7 @@ export default function AdminPage_Stores() {
         setContacts(
           response.data.data.filter(
             (item) =>
-              item.type === "EMPLOYEE" &&
-              item.isConfirmed === true &&
-              //for cosmetics purposes only
-              item.firstName !== "employee" &&
-              item.firstName !== "max" &&
-              item.firstName !== "Admin"
+              item.type === "EMPLOYEE"
           )
         );
       })
@@ -122,14 +117,27 @@ export default function AdminPage_Stores() {
       });
   };
 
+  const getPasswordById = (id) => {
+    const contact = contacts.find((contact) => contact._id === id);
+    if (contact) {
+      return contact.password;
+    } else {
+      return null;
+    }
+  };
+
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
+
+    const editContactPassword = getPasswordById(editContactId);
+    console.log(editContactPassword);
 
     const editedContact = {
       _id: editContactId,
       firstName: editFormData.firstName,
       lastName: editFormData.lastName,
       email: editFormData.email,
+      password: editContactPassword
     };
 
     //Without axios, frontend only
@@ -182,7 +190,11 @@ export default function AdminPage_Stores() {
     //setContacts(newContacts);
 
     axios
-      .delete(USER_URL + contactId)
+      .delete(USER_URL + contactId, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then(() => {
         const newContacts = contacts.filter(
           (contact) => contact._id !== contactId
@@ -198,15 +210,15 @@ export default function AdminPage_Stores() {
     <div className="app-container">
       {/* <h1>List of Store Employees</h1> */}
       <MainFeaturedPost post={title} />
-
+      
+      {/*
+      //Remove add a user function
       <h2>Add a store employee</h2>
-
       {message && (
         <div className={`alert alert-${message.type}`} role="alert">
           {message.text}
         </div>
       )}
-
       <form onSubmit={handleAddFormSubmit}>
         <TextField
           id="outlined-basic"
@@ -256,6 +268,7 @@ export default function AdminPage_Stores() {
           Add
         </Button>
       </form>
+      */}
 
       <form onSubmit={handleEditFormSubmit}>
         <Table striped bordered hover>
