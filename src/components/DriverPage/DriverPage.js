@@ -206,9 +206,9 @@ export default function DriverPage() {
         <Grid>
           <ChakraProvider>
             <Container style={{ textAlign: "center" }}>
-              <div style={{ position: "relative", alignItems: "center" }}>
+              {/*<div style={{ position: "relative", alignItems: "center" }}>*/}
                 <GoogleMap points_of_interest={appointmentbyDate} />
-              </div>
+              {/*</div>*/}
             </Container>
           </ChakraProvider>
         </Grid>
