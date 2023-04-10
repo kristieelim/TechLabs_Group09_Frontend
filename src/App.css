@@ -245,6 +245,16 @@ h2 {
   font-family: 'Open Sans', sans-serif;
 }
 
+
+h3 {
+	padding-top: 15px;
+	color: #625f5f;
+	font-size: 10px;
+	text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
 .maintext{
 	padding-top: 20px;
   padding-left: 450px;

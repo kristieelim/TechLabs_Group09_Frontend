@@ -35,6 +35,8 @@ import dayjs from 'dayjs';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
+import SP3 from "../StorePage3 copy"
+
 
 const title = {
   title: 'Store Page',
@@ -297,12 +299,13 @@ export default function StorePage() {
 
   return (
     <section>
-      <ThemeProvider theme={theme}>
+      
+      
         <div className="app-container">
           {/* <h1>Store Page</h1> */}
           <MainFeaturedPost post={title} />
 
-          <Box sx={{ flexGrow: 1 }}>
+          {/* <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={22}>
               <Grid item xs="auto">
                 <Item > 
@@ -312,12 +315,12 @@ export default function StorePage() {
                   Employee Name: {user.firstName + " " + user.lastName}</Item>
               </Grid>
             </Grid>
-          </Box>
-          
+          </Box> */}
+          <SP3 />
           
           
           {/* <h2>Select Date and Time</h2> */}
-          <div style={{ display: "inline-block" }}>
+          {/* <div style={{ display: "inline-block" }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker defaultValue={today} shouldDisableYear={isInCurrentYear} 
           // selected={selectedDate} 
@@ -326,7 +329,7 @@ export default function StorePage() {
           // minDate={new Date()}
           />
             </LocalizationProvider>
-        </div>
+        </div> */}
           {/* <DatePicker1 /> */}
 
           {/* 
@@ -339,9 +342,9 @@ export default function StorePage() {
         />
       </div> */}
 
-          <h2>Add Food</h2>
+          {/* <h2>Add Food</h2> */}
           <form onSubmit={handleAddFormSubmit}>
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               label="Enter Food"
               variant="outlined"
@@ -362,7 +365,8 @@ export default function StorePage() {
               placeholder="Enter Food Quantity"
               pattern="\d+(\.\d{1,2})?"
               onChange={handleAddFormChange}
-            />
+            /> */}
+
 
             {/* <input
           type="text"
@@ -399,7 +403,7 @@ export default function StorePage() {
         </Select>
       </FormControl> */}
 
-            <FormControl sx={{ minWidth: 120 }}>
+            {/* <FormControl sx={{ minWidth: 120 }}>
               <InputLabel htmlFor="demo-customized-select-native">
                 Select Unit
               </InputLabel>
@@ -427,7 +431,7 @@ export default function StorePage() {
               sx={{ minWidth: 120, minHeight: 56 }}
             >
               Add
-            </Button>
+            </Button> */}
           </form>
 
           <form onSubmit={handleEditFormSubmit}>
@@ -462,7 +466,7 @@ export default function StorePage() {
             </Table>
           </form>
         </div>
-      </ThemeProvider>
+      
     </section>
   );
 }
