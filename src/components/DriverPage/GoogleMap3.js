@@ -74,7 +74,10 @@ export default function GoogleMap2(props) {
       current_location = null;
       alert(`Could not get geolocation: ${error}`);
     }
+
     if (current_location !== null) points.unshift(current_location);
+
+    
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
     const results = await directionsService.route({
