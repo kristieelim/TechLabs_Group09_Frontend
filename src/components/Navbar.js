@@ -69,7 +69,7 @@ export default function Navbar() {
 
       {/* With Authorization */}
       {isEmployee && (
-        <CustomLink to="/StorePage3">
+        <CustomLink to="/StorePage">
           <Button variant="outlined" size="small">
             Store Page{" "}
           </Button>

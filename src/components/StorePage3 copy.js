@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 
+import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { styled } from "@mui/material/styles";
@@ -122,18 +123,22 @@ export default function StorePage3() {
 
   return (
     <div>
-
-        <Grid>
-          <Item fullWidth>
+        <Grid sx={{ alignContent: "space-around" }}>
+          
+        <Item fullWidth>
             <Typography variant="h6" gutterBottom>
               Employee Name: <b>{user.firstName + " " + user.lastName}</b>
+             
             </Typography>
             <Typography variant="h6" gutterBottom>
-              Store Name: <b>{restaurant[0].name}</b>
-            </Typography>
-     
+              {restaurant.length > 0 && <p>Store Name: <b>{restaurant[0].name}</b> </p>}
+              </Typography>
           </Item>
         </Grid>
+        {/* {restaurant.length > 0 && <h2>Store Name: {restaurant[0].name} </h2>} */}
+
+      
+
 
 
 
