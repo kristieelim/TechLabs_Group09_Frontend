@@ -33,13 +33,7 @@ export default function AdminPage_Drivers() {
         setContacts(
           response.data.data.filter(
             (item) =>
-              item.type === "DRIVER" &&
-              item.isConfirmed === true &&
-              //just for some cosmetics
-              item.email !== null &&
-              item.firstName !== "Seb" &&
-              item.firstName !== "Driver1" &&
-              item.lastName !== "He"
+              item.type === "DRIVER"
           )
         );
       })
