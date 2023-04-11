@@ -1,25 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import { useEffect } from "react";
 
-const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
-    
-    const [foodQuantity, setFoodQuantity] = useState(food.foodQuantity);
+const ReadOnlyRow = ({ food, handleEditClick, handleDeleteClick }) => {
+  const [foodQuantity, setFoodQuantity] = useState(food.foodQuantity);
 
-    const handleIncrementClick = () => {
-        setFoodQuantity(prevQuantity => Number(prevQuantity) + 1);
-      };
-    
-      const handleDecrementClick = () => {
-        setFoodQuantity((prevQuantity) => Number(prevQuantity) - 1);
-      };
-    return (
+  const handleIncrementClick = () => {
+    setFoodQuantity((prevQuantity) => Number(prevQuantity) + 1);
+  };
+
+  const handleDecrementClick = () => {
+    setFoodQuantity((prevQuantity) => Number(prevQuantity) - 1);
+  };
+
+  useEffect(() => {
+    setFoodQuantity(food.quantity);
+  }, [food.quantity]);
+  return (
     <tr>
       <td>{food.food}</td>
-      <td>{foodQuantity}</td> 
-      <td>{food.unit}</td> 
+      <td>{foodQuantity}</td>
+      <td>{food.unit}</td>
       <td>
-
         {/* <button
           type="button"
           onClick={handleIncrementClick }
@@ -32,13 +35,10 @@ const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
         >
           -
         </button> */}
-        <Button
-          type="button" 
-          onClick={(event) => handleEditClick(event, food)}
-        >
+        <Button type="button" onClick={(event) => handleEditClick(event, food)}>
           Edit
         </Button>
-        <Button type="button"  onClick={() => handleDeleteClick(food.id)}>
+        <Button type="button" onClick={() => handleDeleteClick(food.id)}>
           Delete
         </Button>
       </td>
@@ -47,4 +47,3 @@ const ReadOnlyRow = ({food, handleEditClick, handleDeleteClick}) => {
 };
 
 export default ReadOnlyRow;
-
