@@ -117,32 +117,32 @@ export default function StorePage() {
 
 
   
-  // useEffect(() => {
-  //   axios.get(`/api/restaurant/`)
-  //     .then(response => {
-  //       const restaurant = response.data.data.filter(
-  //           (restaurant) => restaurant.employee === user._id
-  //         );;
-  //       setRestaurant(restaurant);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }, [user._id]);
+  useEffect(() => {
+    axios.get(`/api/restaurant/`)
+      .then(response => {
+        const restaurant = response.data.data.filter(
+            (restaurant) => restaurant._id === user._id
+          );;
+        setRestaurant(restaurant);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [user._id]);
 
 
-  // useEffect(() => {
-  //   axios.get("/api/appointment/")
-  //     .then(response => {
-  //       const appointment = response.data.data.filter(
-  //         (appointment) => appointment.restaurant === restaurant._id
-  //       );
-  //       setAppointment(appointment);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }, [restaurant._id]);
+  useEffect(() => {
+    axios.get("/api/appointment/")
+      .then(response => {
+        const appointment = response.data.data.filter(
+          (appointment) => appointment.restaurant === restaurant._id
+        );
+        setAppointment(appointment);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [restaurant._id]);
   
   useEffect(() => {
     axios.get("/api/appointment/")
@@ -305,9 +305,134 @@ export default function StorePage() {
           {/* <h1>Store Page</h1> */}
           <MainFeaturedPost post={title} />
 
-          
+          {/* <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={22}>
+              <Grid item xs="auto">
+                <Item > 
+                <IconButton>
+                  <AccountCircleIcon fontSize="medium" variant="outlined"/>
+                </IconButton>
+                  Employee Name: {user.firstName + " " + user.lastName}</Item>
+              </Grid>
+            </Grid>
+          </Box> */}
           <SP3 />
           
+          
+          {/* <h2>Select Date and Time</h2> */}
+          {/* <div style={{ display: "inline-block" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker defaultValue={today} shouldDisableYear={isInCurrentYear} 
+          // selected={selectedDate} 
+          onChange={(date) => setSelectedDate(date)} 
+          dateFormat="yyyy-MM-dd"
+          // minDate={new Date()}
+          />
+            </LocalizationProvider>
+        </div> */}
+          {/* <DatePicker1 /> */}
+
+          {/* 
+      <div style={{ display: "inline-block", marginLeft: "10px" }}>
+        <input
+          type="time"
+          name="time"
+          required="required"
+          onChange={handleAddFormChange}
+        />
+      </div> */}
+
+          {/* <h2>Add Food</h2> */}
+          <form onSubmit={handleAddFormSubmit}>
+            {/* <TextField
+              id="outlined-basic"
+              label="Enter Food"
+              variant="outlined"
+              type="text"
+              name="food"
+              required="required"
+              placeholder="Enter Food Name"
+              onChange={handleAddFormChange}
+            />
+
+            <TextField
+              id="outlined-basic"
+              label="Enter Food Amount"
+              variant="outlined"
+              type="text"
+              name="foodQuantity"
+              required="required"
+              placeholder="Enter Food Quantity"
+              pattern="\d+(\.\d{1,2})?"
+              onChange={handleAddFormChange}
+            /> */}
+
+
+            {/* <input
+          type="text"
+          name="unit"
+          required="required"
+          placeholder="Enter Unit"
+          onChange={handleAddFormChange}
+        /> */}
+
+            {/* <select type="text"
+          name="unit"
+          required="required" onChange={handleAddFormChange}> 
+          <option value="-">Select Unit</option>
+          <option value="kg">kg</option>
+          <option value="liter">liter</option>
+          <option value="piece">piece</option>
+          <option value="box">box</option>
+        </select> */}
+
+            {/* <FormControl  >
+        <InputLabel id="demo-simple-select-label">Select Unit</InputLabel>
+        <Select sx={{minWidth: 120 }}
+          type="text"
+          name="unit"
+          label="Unit"
+          required="required" 
+          onChange={handleAddFormChange} 
+        >
+          <MenuItem value={10}>kg</MenuItem>
+          <MenuItem value="liter">liter</MenuItem>
+          <MenuItem value="piece">piece</MenuItem>
+          <MenuItem value="box">box</MenuItem>
+          
+        </Select>
+      </FormControl> */}
+
+            {/* <FormControl sx={{ minWidth: 120 }}>
+              <InputLabel htmlFor="demo-customized-select-native">
+                Select Unit
+              </InputLabel>
+              <NativeSelect
+                type="text"
+                name="unit"
+                // value={addFormData}
+                label="Unit"
+                required="required"
+                onChange={handleAddFormChange}
+                // input={<BootstrapInput />}
+                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+              >
+                <option aria-label="None" value="" />
+                <option value={"kg"}>kg</option>
+                <option value={"liter"}>liter</option>
+                <option value={"piece"}>piece</option>
+                <option value={"box"}>box</option>
+              </NativeSelect>
+            </FormControl>
+
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ minWidth: 120, minHeight: 56 }}
+            >
+              Add
+            </Button> */}
+          </form>
 
           <form onSubmit={handleEditFormSubmit}>
             <Table striped bordered hover>

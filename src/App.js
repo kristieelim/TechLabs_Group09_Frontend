@@ -14,6 +14,7 @@ import Logout from "./components/Logout";
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import Container from '@mui/material/Container';
+import Footer from "./components/HomePage/Footer"
 
 class App extends Component {
   render() {
@@ -41,6 +42,7 @@ class App extends Component {
               element={<AdminPage_Drivers />}
             />
           </Routes>
+          <Footer/>
         </Container>
       </div>
     );

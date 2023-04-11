@@ -89,10 +89,10 @@ export default function Blog() {
         </main>
       </Container>
       
-      <Footer
+      {/* <Footer
         title=""
         description=""
-      />
+      /> */}
     </ThemeProvider>
   );
 }
