@@ -1,5 +1,5 @@
 The web application is deployed [here](https://tafel-route.netlify.app/).\
-GitHub repository for the backend: [Backend](https://github.com/robbdasailer/Techlabs_Group09_Backend)\
+GitHub repository for the backend: [Backend](https://github.com/robbdasailer/Techlabs_Group09_Backend)
 
 ## User Registration
 Since the sending of the OTP to an email address has not been implemented, use the default OTP: 999999
