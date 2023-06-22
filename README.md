@@ -3,7 +3,7 @@ The web application is deployed [here](https://tafel-route.netlify.app/).\
 GitHub repository for the backend: [Backend](https://github.com/robbdasailer/Techlabs_Group09_Backend)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
-Create React App's README can be found below.
+Create React App's README can be found my scrolling to the bottom.
 
 ## User Registration
 Since the sending of the OTP to an email address has not been implemented, use the default OTP: 999999
